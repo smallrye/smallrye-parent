@@ -1,0 +1,7 @@
+image:https://semaphoreci.com/api/v1/smallrye/smallrye-parent/branches/master/badge.svg["Semaphore CI", link="https://semaphoreci.com/smallrye/smallrye-parent"]
+image:https://img.shields.io/github/license/thorntail/thorntail.svg["License", link="http://www.apache.org/licenses/LICENSE-2.0"]
+
+SmallRye Parent
+=============
+
+Define Maven setup for all SmallRye projects.
