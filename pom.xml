@@ -4,7 +4,7 @@
 
   <groupId>io.smallrye</groupId>
   <artifactId>smallrye-parent</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1-SNAPSHOT</version>
 
   <name>SmallRye: Parent</name>
   <description>SmallRye Parent POM</description>
@@ -62,11 +62,11 @@
 
   <distributionManagement>
     <snapshotRepository>
-      <id>ossrh</id>
+      <id>oss.sonatype</id>
       <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
     </snapshotRepository>
     <repository>
-      <id>ossrh</id>
+      <id>oss.sonatype</id>
       <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
     </repository>
   </distributionManagement>
@@ -165,7 +165,7 @@
             <extensions>true</extensions>
             <configuration>
               <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-              <serverId>ossrh</serverId>
+              <serverId>oss.sonatype</serverId>
               <autoReleaseAfterClose>true</autoReleaseAfterClose>
             </configuration>
           </plugin>
