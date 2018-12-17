@@ -16,7 +16,7 @@
     <!-- Plugin versions -->
     <version.gpg.plugin>1.6</version.gpg.plugin>
     <version.javadoc.plugin>3.0.1</version.javadoc.plugin>
-    <version.nexus.staging.plugin>1.6.3</version.nexus.staging.plugin>
+    <version.nexus.staging.plugin>1.6.8</version.nexus.staging.plugin>
     <version.release.plugin>2.5.3</version.release.plugin>
     <version.source.plugin>3.0.1</version.source.plugin>
     <version.surefire.plugin>2.22.1</version.surefire.plugin>
