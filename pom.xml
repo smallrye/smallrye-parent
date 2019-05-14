@@ -26,6 +26,7 @@
     <version.org.jboss.logging-processor>2.2.0.Final</version.org.jboss.logging-processor>
     <version.weld.api>3.1.Final</version.weld.api>
     <version.weld.core>3.1.1.Final</version.weld.core>
+    <version.org.jboss.jandex>2.1.1.Final</version.org.jboss.jandex>
 
     <!-- Testing versions -->
     <version.assertj>3.12.2</version.assertj>
@@ -34,6 +35,7 @@
     <version.org.jboss.arquillian.container.weld-embedded>2.0.1.Final</version.org.jboss.arquillian.container.weld-embedded>
     <version.org.jboss.arquillian.wildfly>2.2.0.Final</version.org.jboss.arquillian.wildfly>
     <version.junit>4.12</version.junit>
+    <version.rest-assured>4.0.0</version.rest-assured>
     <version.testng>6.14.3</version.testng>
     <version.testcontainers>1.11.2</version.testcontainers>
     <version.wildfly>16.0.0.Final</version.wildfly>
@@ -166,6 +168,12 @@
         <version>${version.org.jboss.logging-processor}</version>
       </dependency>
 
+      <dependency>
+        <groupId>org.jboss</groupId>
+        <artifactId>jandex</artifactId>
+        <version>${version.org.jboss.jandex}</version>
+      </dependency>
+
       <!-- Testing -->
       <dependency>
         <groupId>junit</groupId>
@@ -189,6 +197,12 @@
         <groupId>org.awaitility</groupId>
         <artifactId>awaitility</artifactId>
         <version>${version.awaitility}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>io.rest-assured</groupId>
+        <artifactId>rest-assured</artifactId>
+        <version>${version.rest-assured}</version>
         <scope>test</scope>
       </dependency>
       <dependency>
