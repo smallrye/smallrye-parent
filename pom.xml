@@ -27,6 +27,7 @@
     <version.weld.api>3.1.Final</version.weld.api>
     <version.weld.core>3.1.1.Final</version.weld.core>
     <version.org.jboss.jandex>2.1.1.Final</version.org.jboss.jandex>
+    <version.glassfish.json>1.1.4</version.glassfish.json>
 
     <!-- Testing versions -->
     <version.assertj>3.12.2</version.assertj>
@@ -149,6 +150,13 @@
         <groupId>org.jboss.weld</groupId>
         <artifactId>weld-core-impl</artifactId>
         <version>${version.weld.core}</version>
+      </dependency>
+
+      <!-- Glassfish -->
+      <dependency>
+        <groupId>org.glassfish</groupId>
+        <artifactId>javax.json</artifactId>
+        <version>${version.glassfish.json}</version>
       </dependency>
 
       <!-- Logging -->
