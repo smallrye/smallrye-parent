@@ -52,6 +52,9 @@
     <version.release.plugin>2.5.3</version.release.plugin>
     <version.source.plugin>3.1.0</version.source.plugin>
     <version.surefire.plugin>2.22.2</version.surefire.plugin>
+    <version.smallrye.code.rules.plugin>1</version.smallrye.code.rules.plugin>
+    <version.formatter.plugin>2.8.1</version.formatter.plugin>
+    <version.impsort.plugin>1.2.0</version.impsort.plugin>
 
     <!-- Cross plugins settings -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -366,6 +369,49 @@
             <id>attach-sources</id>
             <goals>
               <goal>jar-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>net.revelc.code.formatter</groupId>
+        <artifactId>formatter-maven-plugin</artifactId>
+        <version>${version.formatter.plugin}</version>
+        <dependencies>
+          <dependency>
+            <groupId>io.smallrye</groupId>
+            <artifactId>smallrye-code-rules</artifactId>
+            <version>${version.smallrye.code.rules.plugin}</version>
+          </dependency>
+        </dependencies>
+        <configuration>
+          <configFile>io/smallrye/coderules/eclipse-format.xml</configFile>
+          <skip>${format.skip}</skip>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>process-sources</phase>
+            <goals>
+              <goal>format</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>net.revelc.code</groupId>
+        <artifactId>impsort-maven-plugin</artifactId>
+        <version>${version.impsort.plugin}</version>
+        <configuration>
+          <groups>java.,javax.,org.,com.</groups>
+          <staticGroups>*</staticGroups>
+          <skip>${format.skip}</skip>
+          <removeUnused>true</removeUnused>
+        </configuration>
+        <executions>
+          <execution>
+            <id>sort-imports</id>
+            <goals>
+              <goal>sort</goal>
             </goals>
           </execution>
         </executions>

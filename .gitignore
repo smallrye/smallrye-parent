@@ -1,3 +1,7 @@
+.*
+!/.gitignore
+!*.gitkeep
+!.mvn
 target
-.idea
+*.log
 *.iml
