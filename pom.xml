@@ -55,6 +55,7 @@
     <version.smallrye.code.rules.plugin>1</version.smallrye.code.rules.plugin>
     <version.formatter.plugin>2.10.0</version.formatter.plugin>
     <version.impsort.plugin>1.2.0</version.impsort.plugin>
+    <version.jacoco.plugin>0.8.4</version.jacoco.plugin>
 
     <!-- Cross plugins settings -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -345,6 +346,25 @@
           <artifactId>nexus-staging-maven-plugin</artifactId>
           <version>${version.nexus.staging.plugin}</version>
         </plugin>
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>${version.jacoco.plugin}</version>
+          <executions>
+              <execution>
+                  <id>prepare-agent</id>
+                  <goals>
+                      <goal>prepare-agent</goal>
+                  </goals>
+                  <phase>generate-test-resources</phase>
+                  <configuration>
+                      <destFile>${project.build.directory}/jacoco.exec</destFile>
+                      <propertyName>jacocoArgLine</propertyName>
+                      <append>true</append>
+                  </configuration>
+              </execution>
+          </executions>
+        </plugin>
       </plugins>
     </pluginManagement>
 
@@ -462,5 +482,4 @@
       </build>
     </profile>
   </profiles>
-
 </project>
