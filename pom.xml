@@ -56,6 +56,7 @@
     <version.formatter.plugin>2.10.0</version.formatter.plugin>
     <version.impsort.plugin>1.2.0</version.impsort.plugin>
     <version.jacoco.plugin>0.8.4</version.jacoco.plugin>
+    <version.smallrye.plugin>1.0.0</version.smallrye.plugin>
 
     <!-- Cross plugins settings -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -365,6 +366,11 @@
                   </configuration>
               </execution>
           </executions>
+        </plugin>
+        <plugin>
+          <groupId>io.smallrye</groupId>
+          <artifactId>smallrye-maven-plugin</artifactId>
+          <version>${version.smallrye.plugin}</version>
         </plugin>
       </plugins>
     </pluginManagement>
