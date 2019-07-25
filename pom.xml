@@ -38,7 +38,7 @@
     <version.junit>4.12</version.junit>
     <version.rest-assured>4.0.0</version.rest-assured>
     <version.testng>6.14.3</version.testng>
-    <version.testcontainers>1.11.4</version.testcontainers>
+    <version.testcontainers>1.12.0</version.testcontainers>
     <version.wildfly>16.0.0.Final</version.wildfly>
 
     <!-- Plugin versions -->
