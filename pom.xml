@@ -30,7 +30,7 @@
     <version.glassfish.json>1.1.4</version.glassfish.json>
 
     <!-- Testing versions -->
-    <version.assertj>3.12.2</version.assertj>
+    <version.assertj>3.13.0</version.assertj>
     <version.awaitility>3.1.6</version.awaitility>
     <version.org.jboss.arquillian>1.4.1.Final</version.org.jboss.arquillian>
     <version.org.jboss.arquillian.container.weld-embedded>2.0.1.Final</version.org.jboss.arquillian.container.weld-embedded>
