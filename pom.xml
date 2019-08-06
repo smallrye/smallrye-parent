@@ -382,6 +382,7 @@
         <version>${version.release.plugin}</version>
         <configuration>
           <autoVersionSubmodules>true</autoVersionSubmodules>
+          <tagNameFormat>@{project.version}</tagNameFormat>
           <preparationGoals>clean install</preparationGoals>
           <pushChanges>true</pushChanges>
           <localCheckout>false</localCheckout>
