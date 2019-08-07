@@ -360,10 +360,16 @@
                   </goals>
                   <phase>generate-test-resources</phase>
                   <configuration>
-                      <destFile>${project.build.directory}/jacoco.exec</destFile>
                       <propertyName>jacocoArgLine</propertyName>
                       <append>true</append>
                   </configuration>
+              </execution>
+              <execution>
+                  <id>report</id>
+                  <phase>verify</phase>
+                  <goals>
+                      <goal>report</goal>
+                  </goals>
               </execution>
           </executions>
         </plugin>
