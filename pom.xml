@@ -37,7 +37,7 @@
     <version.org.jboss.arquillian.wildfly>2.2.0.Final</version.org.jboss.arquillian.wildfly>
     <version.junit>4.12</version.junit>
     <version.rest-assured>4.1.1</version.rest-assured>
-    <version.testng>7.0.0</version.testng>
+    <version.testng>6.14.3</version.testng>
     <version.testcontainers>1.12.1</version.testcontainers>
     <version.wildfly>16.0.0.Final</version.wildfly>
 
