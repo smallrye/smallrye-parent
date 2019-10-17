@@ -456,6 +456,17 @@
     </plugins>
   </build>
 
+  <pluginRepositories>
+    <pluginRepository>
+      <id>jboss-public-repository</id>
+      <name>JBoss Public Maven Repository</name>
+      <url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
+
   <profiles>
     <profile>
       <id>jdk9</id>
