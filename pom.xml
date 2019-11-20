@@ -62,6 +62,10 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
+    <!-- Sonar settings -->
+    <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+    <sonar.organization>smallrye</sonar.organization>
+
     <!-- maven-compiler-plugin -->
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.source>1.8</maven.compiler.source>
@@ -366,13 +370,6 @@
                       <propertyName>jacocoArgLine</propertyName>
                       <append>true</append>
                   </configuration>
-              </execution>
-              <execution>
-                  <id>report</id>
-                  <phase>verify</phase>
-                  <goals>
-                      <goal>report</goal>
-                  </goals>
               </execution>
           </executions>
         </plugin>
