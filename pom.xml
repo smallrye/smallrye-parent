@@ -43,7 +43,7 @@
 
     <!-- Plugin versions -->
     <version.asciidoctor.plugin>1.6.0</version.asciidoctor.plugin>
-    <version.compiler.plugin>3.8.1-jboss-1</version.compiler.plugin>
+    <version.compiler.plugin>3.8.1</version.compiler.plugin>
     <version.gpg.plugin>1.6</version.gpg.plugin>
     <version.install.plugin>2.5.2</version.install.plugin>
     <version.jar.plugin>3.2.0</version.jar.plugin>
@@ -69,7 +69,6 @@
     <!-- maven-compiler-plugin -->
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.source>1.8</maven.compiler.source>
-    <version.maven.compiler.release>8</version.maven.compiler.release>
     <maven.compiler.testTarget>${maven.compiler.target}</maven.compiler.testTarget>
     <maven.compiler.testSource>${maven.compiler.source}</maven.compiler.testSource>
 
@@ -455,15 +454,6 @@
 
   <profiles>
     <profile>
-      <id>jdk9</id>
-      <activation>
-        <jdk>[9,)</jdk>
-      </activation>
-      <properties>
-        <maven.compiler.release>${version.maven.compiler.release}</maven.compiler.release>
-      </properties>
-    </profile>
-    <profile>
       <id>release</id>
       <build>
         <plugins>
@@ -550,25 +540,6 @@
             <plugins>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-dependency-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>fetch-jdk-misc</id>
-                            <phase>generate-sources</phase>
-                            <goals>
-                                <goal>get</goal>
-                                <goal>copy</goal>
-                            </goals>
-                            <configuration>
-                                <artifact>org.jboss:jdk-misc:${version.jdk-misc}</artifact>
-                                <outputDirectory>${project.build.directory}</outputDirectory>
-                                <stripVersion>true</stripVersion>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <executions>
                         <execution>
@@ -579,16 +550,20 @@
                             </goals>
                             <configuration>
                                 <release>8</release>
-                                <additionalClasspathElements>
-                                    <additionalClasspathElement>${project.build.directory}/jdk-misc.jar
-                                    </additionalClasspathElement>
-                                </additionalClasspathElements>
                             </configuration>
                         </execution>
                     </executions>
                 </plugin>
             </plugins>
         </build>
+      <dependencies>
+        <dependency>
+          <groupId>org.jboss</groupId>
+          <artifactId>jdk-misc</artifactId>
+          <version>${version.jdk-misc}</version>
+          <scope>optional</scope>
+        </dependency>
+      </dependencies>
     </profile>
 
     <!-- This profile is activated when Java 9 or later is used to test a project that supports Java 8 -->
@@ -651,14 +626,10 @@
                             </goals>
                             <configuration>
                                 <release>9</release>
-                                <buildDirectory>${project.build.directory}</buildDirectory>
-                                <compileSourceRoots>${project.basedir}/src/main/java9</compileSourceRoots>
-                                <outputDirectory>${project.build.directory}/classes/META-INF/versions/9
-                                </outputDirectory>
-                                <additionalClasspathElements>
-                                    <additionalClasspathElement>${project.build.outputDirectory}
-                                    </additionalClasspathElement>
-                                </additionalClasspathElements>
+                              <compileSourceRoots>
+                                <compileSourceRoot>${project.basedir}/src/main/java9</compileSourceRoot>
+                              </compileSourceRoots>
+                              <multiReleaseOutput>true</multiReleaseOutput>
                             </configuration>
                         </execution>
                     </executions>
@@ -740,17 +711,10 @@
                             </goals>
                             <configuration>
                                 <release>10</release>
-                                <buildDirectory>${project.build.directory}</buildDirectory>
-                                <compileSourceRoots>${project.basedir}/src/main/java10</compileSourceRoots>
-                                <outputDirectory>${project.build.directory}/classes/META-INF/versions/10
-                                </outputDirectory>
-                                <additionalClasspathElements>
-                                    <additionalClasspathElement>
-                                        ${project.build.directory}/classes/META-INF/versions/9
-                                    </additionalClasspathElement>
-                                    <additionalClasspathElement>${project.build.outputDirectory}
-                                    </additionalClasspathElement>
-                                </additionalClasspathElements>
+                              <compileSourceRoots>
+                                <compileSourceRoot>${project.basedir}/src/main/java10</compileSourceRoot>
+                              </compileSourceRoots>
+                              <multiReleaseOutput>true</multiReleaseOutput>
                             </configuration>
                         </execution>
                     </executions>
@@ -835,20 +799,10 @@
                             </goals>
                             <configuration>
                                 <release>11</release>
-                                <buildDirectory>${project.build.directory}</buildDirectory>
-                                <compileSourceRoots>${project.basedir}/src/main/java11</compileSourceRoots>
-                                <outputDirectory>${project.build.directory}/classes/META-INF/versions/11
-                                </outputDirectory>
-                                <additionalClasspathElements>
-                                    <additionalClasspathElement>
-                                        ${project.build.directory}/classes/META-INF/versions/10
-                                    </additionalClasspathElement>
-                                    <additionalClasspathElement>
-                                        ${project.build.directory}/classes/META-INF/versions/9
-                                    </additionalClasspathElement>
-                                    <additionalClasspathElement>${project.build.outputDirectory}
-                                    </additionalClasspathElement>
-                                </additionalClasspathElements>
+                              <compileSourceRoots>
+                                <compileSourceRoot>${project.basedir}/src/main/java11</compileSourceRoot>
+                              </compileSourceRoots>
+                              <multiReleaseOutput>true</multiReleaseOutput>
                             </configuration>
                         </execution>
                     </executions>
@@ -936,23 +890,10 @@
                             </goals>
                             <configuration>
                                 <release>12</release>
-                                <buildDirectory>${project.build.directory}</buildDirectory>
-                                <compileSourceRoots>${project.basedir}/src/main/java12</compileSourceRoots>
-                                <outputDirectory>${project.build.directory}/classes/META-INF/versions/12
-                                </outputDirectory>
-                                <additionalClasspathElements>
-                                    <additionalClasspathElement>
-                                        ${project.build.directory}/classes/META-INF/versions/11
-                                    </additionalClasspathElement>
-                                    <additionalClasspathElement>
-                                        ${project.build.directory}/classes/META-INF/versions/10
-                                    </additionalClasspathElement>
-                                    <additionalClasspathElement>
-                                        ${project.build.directory}/classes/META-INF/versions/9
-                                    </additionalClasspathElement>
-                                    <additionalClasspathElement>${project.build.outputDirectory}
-                                    </additionalClasspathElement>
-                                </additionalClasspathElements>
+                              <compileSourceRoots>
+                                <compileSourceRoot>${project.basedir}/src/main/java12</compileSourceRoot>
+                              </compileSourceRoots>
+                              <multiReleaseOutput>true</multiReleaseOutput>
                             </configuration>
                         </execution>
                     </executions>
@@ -1042,27 +983,11 @@
                                 <goal>compile</goal>
                             </goals>
                             <configuration>
-                                <release>12</release>
-                                <buildDirectory>${project.build.directory}</buildDirectory>
-                                <compileSourceRoots>${project.basedir}/src/main/java13</compileSourceRoots>
-                                <outputDirectory>${project.build.directory}/classes/META-INF/versions/13
-                                </outputDirectory>
-                                <additionalClasspathElements>
-                                    <additionalClasspathElement>
-                                        ${project.build.directory}/classes/META-INF/versions/12
-                                    </additionalClasspathElement>
-                                    <additionalClasspathElement>
-                                        ${project.build.directory}/classes/META-INF/versions/11
-                                    </additionalClasspathElement>
-                                    <additionalClasspathElement>
-                                        ${project.build.directory}/classes/META-INF/versions/10
-                                    </additionalClasspathElement>
-                                    <additionalClasspathElement>
-                                        ${project.build.directory}/classes/META-INF/versions/9
-                                    </additionalClasspathElement>
-                                    <additionalClasspathElement>${project.build.outputDirectory}
-                                    </additionalClasspathElement>
-                                </additionalClasspathElements>
+                                <release>13</release>
+                              <compileSourceRoots>
+                                <compileSourceRoot>${project.basedir}/src/main/java13</compileSourceRoot>
+                              </compileSourceRoots>
+                              <multiReleaseOutput>true</multiReleaseOutput>
                             </configuration>
                         </execution>
                     </executions>
