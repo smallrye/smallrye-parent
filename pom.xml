@@ -23,7 +23,7 @@
     <version.javax.json.bind>1.0</version.javax.json.bind>
     <version.javax.ws.rs-api>2.1.1</version.javax.ws.rs-api>
     <version.org.jboss.logging>3.4.1.Final</version.org.jboss.logging>
-    <version.org.jboss.logging-processor>2.2.0.Final</version.org.jboss.logging-processor>
+    <version.org.jboss.logging-processor>2.2.1.Final</version.org.jboss.logging-processor>
     <version.weld.api>3.1.Final</version.weld.api>
     <version.weld.core>3.1.2.Final</version.weld.core>
     <version.org.jboss.jandex>2.1.1.Final</version.org.jboss.jandex>
