@@ -37,7 +37,7 @@
     <version.org.jboss.arquillian>1.6.0.Final</version.org.jboss.arquillian>
     <version.org.jboss.arquillian.container.weld-embedded>2.1.0.Final</version.org.jboss.arquillian.container.weld-embedded>
     <version.org.jboss.arquillian.wildfly>2.2.0.Final</version.org.jboss.arquillian.wildfly>
-    <version.junit>4.13</version.junit>
+    <version.junit>5.6.2</version.junit>
     <version.rest-assured>4.3.0</version.rest-assured>
     <version.testng>6.14.3</version.testng>
     <version.testcontainers>1.14.1</version.testcontainers>
@@ -207,10 +207,16 @@
 
       <!-- Testing -->
       <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <scope>test</scope>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter</artifactId>
         <version>${version.junit}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.vintage</groupId>
+        <artifactId>junit-vintage-engine</artifactId>
+        <version>${version.junit}</version>
+        <scope>test</scope>
       </dependency>
       <dependency>
         <groupId>org.testng</groupId>
