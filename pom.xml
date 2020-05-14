@@ -291,6 +291,12 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-gpg-plugin</artifactId>
           <version>${version.gpg.plugin}</version>
+          <configuration>
+            <gpgArguments>
+              <arg>--pinentry-mode</arg>
+              <arg>loopback</arg>
+            </gpgArguments>
+          </configuration>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -397,9 +403,10 @@
         <configuration>
           <autoVersionSubmodules>true</autoVersionSubmodules>
           <tagNameFormat>@{project.version}</tagNameFormat>
-          <preparationGoals>clean install</preparationGoals>
-          <pushChanges>true</pushChanges>
-          <localCheckout>false</localCheckout>
+          <preparationGoals>verify</preparationGoals>
+          <pushChanges>false</pushChanges>
+          <localCheckout>true</localCheckout>
+          <remoteTagging>false</remoteTagging>
           <arguments>-DskipTests ${release.arguments}</arguments>
         </configuration>
       </plugin>
