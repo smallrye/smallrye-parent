@@ -40,7 +40,7 @@
     <version.junit>4.13</version.junit>
     <version.rest-assured>4.3.0</version.rest-assured>
     <version.testng>6.14.3</version.testng>
-    <version.testcontainers>1.14.1</version.testcontainers>
+    <version.testcontainers>1.14.2</version.testcontainers>
     <version.wildfly>18.0.1.Final</version.wildfly>
 
     <!-- Plugin versions -->
