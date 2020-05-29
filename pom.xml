@@ -220,8 +220,8 @@
         <scope>test</scope>
       </dependency>
       <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-params</artifactId>
+        <groupId>org.junit.vintage</groupId>
+        <artifactId>junit-vintage-engine</artifactId>
         <version>${version.junit5}</version>
         <scope>test</scope>
       </dependency>
