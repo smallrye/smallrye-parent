@@ -11,29 +11,20 @@ on:
       - 'NOTICE'
       - 'README*'
   pull_request:
-    paths-ignore:
-      - '.gitignore'
-      - 'CODEOWNERS'
-      - 'LICENSE'
-      - 'NOTICE'
-      - 'README*'
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        java: [8, 11]
-    name: build with jdk ${{matrix.java}}
+    name: Build
 
     steps:
       - uses: actions/checkout@v2
-        name: checkout
+        name: Checkout
 
-      - uses: actions/setup-java@v1.3.0
-        name: set up jdk ${{matrix.java}}
+      - uses: AdoptOpenJDK/install-jdk@v1
+        name: Set up JDK 11
         with:
-          java-version: ${{matrix.java}}
+          version: 11
 
-      - name: build with maven
+      - name: Maven
         run: mvn -B formatter:validate verify --file pom.xml
