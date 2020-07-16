@@ -381,6 +381,9 @@
           <groupId>org.sonatype.plugins</groupId>
           <artifactId>nexus-staging-maven-plugin</artifactId>
           <version>${version.nexus.staging.plugin}</version>
+          <configuration>
+            <stagingProgressTimeoutMinutes>15</stagingProgressTimeoutMinutes>
+          </configuration>
         </plugin>
         <plugin>
           <groupId>org.jacoco</groupId>
