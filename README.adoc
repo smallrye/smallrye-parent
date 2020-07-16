@@ -136,6 +136,58 @@ compilation.
 To automatically perform this step, create a file in your project root named `build-include-jdk-misc`.
 The contents of this file do not matter; it can be empty or it can contain text referring to this document.
 
+[id='mr-jar-gh-actions']
+=== Using MR JAR functions with GitHub Actions
+
+Using this functionality with GitHub Actions is relatively simple.  It entails adding the additional JDK
+version(s) by way of a setup action, and then passing the location of each additional JDK to the build.
+
+At the time of this writing, the commonly-used `actions/setup-java` does not provide useful environment variables
+for multiple JDK installs, so it is recommended to instead use the `AdoptOpenJDK/install-jdk` action instead.
+
+As an example, for a project that is built on Java 11 but must also be tested against JDK 8, 9, and 10, your `build.yml`
+might look something like this:
+
+[source,yaml]
+----
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build using Maven
+
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout
+
+      - uses: AdoptOpenJDK/install-jdk@v1
+        name: Set up JDK 11
+        with:
+          version: 11
+
+      - uses: AdoptOpenJDK/install-jdk@v1
+        name: Set up JDK 10
+        with:
+          version: 10
+          targets: 'JAVA_HOME_10'
+
+      - uses: AdoptOpenJDK/install-jdk@v1
+        name: Set up JDK 9
+        with:
+          version: 9
+          targets: 'JAVA_HOME_9'
+
+      - uses: AdoptOpenJDK/install-jdk@v1
+        name: Set up JDK 8
+        with:
+          version: 8
+          targets: 'JAVA_HOME_8'
+
+      - name: Build
+        run: mvn -B verify --file pom.xml -Djava8.home=$JAVA_HOME_8 -Djava9.home=$JAVA_HOME_9 -Djava10.home=$JAVA_HOME_10
+----
+
+Note that this configuration causes the default `JAVA_HOME` environment to be set to JDK 11.
+
 [id='build-control-files']
 == Build control files reference
 
