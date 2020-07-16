@@ -405,6 +405,9 @@
                   <configuration>
                       <propertyName>jacocoArgLine</propertyName>
                       <append>true</append>
+                      <excludes>
+                          <exclude>META-INF/**</exclude>
+                      </excludes>
                   </configuration>
               </execution>
           </executions>
