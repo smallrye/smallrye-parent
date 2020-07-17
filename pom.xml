@@ -1047,6 +1047,104 @@
         </build>
     </profile>
 
+
+    <!-- This profile is activated when Java 14 or later is used to test a project that supports Java 13 -->
+    <profile>
+        <id>java13-test</id>
+        <activation>
+            <jdk>[14,)</jdk>
+            <property>
+                <name>java13.home</name>
+            </property>
+            <file>
+                <exists>${basedir}/build-test-java13</exists>
+            </file>
+        </activation>
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <id>java13-test</id>
+                            <phase>test</phase>
+                            <goals>
+                                <goal>test</goal>
+                            </goals>
+                            <configuration>
+                                <jvm>${java13.home}/bin/java</jvm>
+                                <classesDirectory>${project.build.directory}/classes/META-INF/versions/13
+                                </classesDirectory>
+                                <additionalClasspathElements>
+                                    <additionalClasspathElement>
+                                        ${project.build.directory}/classes/META-INF/versions/12
+                                    </additionalClasspathElement>
+                                    <additionalClasspathElement>
+                                        ${project.build.directory}/classes/META-INF/versions/11
+                                    </additionalClasspathElement>
+                                    <additionalClasspathElement>
+                                        ${project.build.directory}/classes/META-INF/versions/10
+                                    </additionalClasspathElement>
+                                    <additionalClasspathElement>
+                                        ${project.build.directory}/classes/META-INF/versions/9
+                                    </additionalClasspathElement>
+                                    <additionalClasspathElement>${project.build.outputDirectory}
+                                    </additionalClasspathElement>
+                                </additionalClasspathElements>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </build>
+    </profile>
+
+    <!-- This profile is activated when Java 14 or later is used to build -->
+    <profile>
+        <id>java14-mr-build</id>
+        <activation>
+            <jdk>[14,)</jdk>
+            <file>
+                <exists>${basedir}/src/main/java14</exists>
+            </file>
+        </activation>
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <id>compile-java14</id>
+                            <phase>compile</phase>
+                            <goals>
+                                <goal>compile</goal>
+                            </goals>
+                            <configuration>
+                                <release>14</release>
+                              <compileSourceRoots>
+                                <compileSourceRoot>${project.basedir}/src/main/java14</compileSourceRoot>
+                              </compileSourceRoots>
+                              <multiReleaseOutput>true</multiReleaseOutput>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <configuration>
+                        <archive>
+                            <manifestEntries>
+                                <Multi-Release>true</Multi-Release>
+                            </manifestEntries>
+                        </archive>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </build>
+    </profile>
+
     <!-- MR JAR support ends here-->
 
   </profiles>
