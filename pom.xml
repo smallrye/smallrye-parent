@@ -395,6 +395,13 @@
           <groupId>org.jacoco</groupId>
           <artifactId>jacoco-maven-plugin</artifactId>
           <version>${version.jacoco.plugin}</version>
+          <configuration>
+            <propertyName>jacocoArgLine</propertyName>
+            <append>true</append>
+            <excludes>
+              <exclude>META-INF/**</exclude>
+            </excludes>
+          </configuration>
           <executions>
               <execution>
                   <id>prepare-agent</id>
@@ -402,13 +409,6 @@
                       <goal>prepare-agent</goal>
                   </goals>
                   <phase>generate-test-resources</phase>
-                  <configuration>
-                      <propertyName>jacocoArgLine</propertyName>
-                      <append>true</append>
-                      <excludes>
-                          <exclude>META-INF/**</exclude>
-                      </excludes>
-                  </configuration>
               </execution>
           </executions>
         </plugin>
