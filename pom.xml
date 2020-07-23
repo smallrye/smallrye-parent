@@ -56,6 +56,7 @@
     <version.source.plugin>3.2.1</version.source.plugin>
     <version.site.plugin>3.9.1</version.site.plugin>
     <version.surefire.plugin>2.22.2</version.surefire.plugin>
+    <version.failsafe.plugin>2.22.2</version.failsafe.plugin>
     <version.smallrye.code.rules.plugin>1</version.smallrye.code.rules.plugin>
     <version.formatter.plugin>2.12.1</version.formatter.plugin>
     <version.impsort.plugin>1.4.1</version.impsort.plugin>
@@ -384,6 +385,19 @@
           <version>${version.surefire.plugin}</version>
         </plugin>
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-failsafe-plugin</artifactId>
+          <version>${version.failsafe.plugin}</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>integration-test</goal>
+                <goal>verify</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
           <groupId>org.sonatype.plugins</groupId>
           <artifactId>nexus-staging-maven-plugin</artifactId>
           <version>${version.nexus.staging.plugin}</version>
@@ -640,6 +654,25 @@
                         </execution>
                     </executions>
                 </plugin>
+              <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <executions>
+                  <execution>
+                    <id>java8-test</id>
+                    <goals>
+                      <goal>integration-test</goal>
+                      <goal>verify</goal>
+                    </goals>
+                    <configuration>
+                      <jvm>${java8.home}/bin/java</jvm>
+                      <additionalClasspathElements>
+                        <additionalClasspathElement>${java8.home}/lib/tools.jar</additionalClasspathElement>
+                      </additionalClasspathElements>
+                    </configuration>
+                  </execution>
+                </executions>
+              </plugin>
             </plugins>
         </build>
     </profile>
@@ -725,6 +758,28 @@
                         </execution>
                     </executions>
                 </plugin>
+              <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <executions>
+                  <execution>
+                    <id>java9-test</id>
+                    <goals>
+                      <goal>integration-test</goal>
+                      <goal>verify</goal>
+                    </goals>
+                    <configuration>
+                      <jvm>${java9.home}/bin/java</jvm>
+                      <classesDirectory>${project.build.directory}/classes/META-INF/versions/9
+                      </classesDirectory>
+                      <additionalClasspathElements>
+                        <additionalClasspathElement>${project.build.outputDirectory}
+                        </additionalClasspathElement>
+                      </additionalClasspathElements>
+                    </configuration>
+                  </execution>
+                </executions>
+              </plugin>
             </plugins>
         </build>
     </profile>
@@ -813,6 +868,31 @@
                         </execution>
                     </executions>
                 </plugin>
+              <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <executions>
+                  <execution>
+                    <id>java10-test</id>
+                    <goals>
+                      <goal>integration-test</goal>
+                      <goal>verify</goal>
+                    </goals>
+                    <configuration>
+                      <jvm>${java10.home}/bin/java</jvm>
+                      <classesDirectory>${project.build.directory}/classes/META-INF/versions/10
+                      </classesDirectory>
+                      <additionalClasspathElements>
+                        <additionalClasspathElement>
+                          ${project.build.directory}/classes/META-INF/versions/9
+                        </additionalClasspathElement>
+                        <additionalClasspathElement>${project.build.outputDirectory}
+                        </additionalClasspathElement>
+                      </additionalClasspathElements>
+                    </configuration>
+                  </execution>
+                </executions>
+              </plugin>
             </plugins>
         </build>
     </profile>
@@ -904,6 +984,34 @@
                         </execution>
                     </executions>
                 </plugin>
+              <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <executions>
+                  <execution>
+                    <id>java11-test</id>
+                    <goals>
+                      <goal>integration-test</goal>
+                      <goal>verify</goal>
+                    </goals>
+                    <configuration>
+                      <jvm>${java11.home}/bin/java</jvm>
+                      <classesDirectory>${project.build.directory}/classes/META-INF/versions/11
+                      </classesDirectory>
+                      <additionalClasspathElements>
+                        <additionalClasspathElement>
+                          ${project.build.directory}/classes/META-INF/versions/10
+                        </additionalClasspathElement>
+                        <additionalClasspathElement>
+                          ${project.build.directory}/classes/META-INF/versions/9
+                        </additionalClasspathElement>
+                        <additionalClasspathElement>${project.build.outputDirectory}
+                        </additionalClasspathElement>
+                      </additionalClasspathElements>
+                    </configuration>
+                  </execution>
+                </executions>
+              </plugin>
             </plugins>
         </build>
     </profile>
@@ -998,6 +1106,37 @@
                         </execution>
                     </executions>
                 </plugin>
+              <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <executions>
+                  <execution>
+                    <id>java12-test</id>
+                    <goals>
+                      <goal>integration-test</goal>
+                      <goal>verify</goal>
+                    </goals>
+                    <configuration>
+                      <jvm>${java12.home}/bin/java</jvm>
+                      <classesDirectory>${project.build.directory}/classes/META-INF/versions/12
+                      </classesDirectory>
+                      <additionalClasspathElements>
+                        <additionalClasspathElement>
+                          ${project.build.directory}/classes/META-INF/versions/11
+                        </additionalClasspathElement>
+                        <additionalClasspathElement>
+                          ${project.build.directory}/classes/META-INF/versions/10
+                        </additionalClasspathElement>
+                        <additionalClasspathElement>
+                          ${project.build.directory}/classes/META-INF/versions/9
+                        </additionalClasspathElement>
+                        <additionalClasspathElement>${project.build.outputDirectory}
+                        </additionalClasspathElement>
+                      </additionalClasspathElements>
+                    </configuration>
+                  </execution>
+                </executions>
+              </plugin>
             </plugins>
         </build>
     </profile>
@@ -1096,6 +1235,40 @@
                         </execution>
                     </executions>
                 </plugin>
+              <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <executions>
+                  <execution>
+                    <id>java13-test</id>
+                    <goals>
+                      <goal>integration-test</goal>
+                      <goal>verify</goal>
+                    </goals>
+                    <configuration>
+                      <jvm>${java13.home}/bin/java</jvm>
+                      <classesDirectory>${project.build.directory}/classes/META-INF/versions/13
+                      </classesDirectory>
+                      <additionalClasspathElements>
+                        <additionalClasspathElement>
+                          ${project.build.directory}/classes/META-INF/versions/12
+                        </additionalClasspathElement>
+                        <additionalClasspathElement>
+                          ${project.build.directory}/classes/META-INF/versions/11
+                        </additionalClasspathElement>
+                        <additionalClasspathElement>
+                          ${project.build.directory}/classes/META-INF/versions/10
+                        </additionalClasspathElement>
+                        <additionalClasspathElement>
+                          ${project.build.directory}/classes/META-INF/versions/9
+                        </additionalClasspathElement>
+                        <additionalClasspathElement>${project.build.outputDirectory}
+                        </additionalClasspathElement>
+                      </additionalClasspathElements>
+                    </configuration>
+                  </execution>
+                </executions>
+              </plugin>
             </plugins>
         </build>
     </profile>
