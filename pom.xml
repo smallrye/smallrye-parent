@@ -602,7 +602,7 @@
           <groupId>org.jboss</groupId>
           <artifactId>jdk-misc</artifactId>
           <version>${version.jdk-misc}</version>
-          <scope>optional</scope>
+          <optional>true</optional>
         </dependency>
       </dependencies>
     </profile>
