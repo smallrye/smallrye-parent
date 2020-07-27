@@ -4,7 +4,7 @@
 
   <groupId>io.smallrye</groupId>
   <artifactId>smallrye-parent</artifactId>
-  <version>22</version>
+  <version>23-SNAPSHOT</version>
 
   <name>SmallRye: Parent</name>
   <description>SmallRye Parent POM</description>
@@ -105,7 +105,7 @@
     <connection>scm:git:git@github.com:smallrye/smallrye-parent.git</connection>
     <developerConnection>scm:git:git@github.com:smallrye/smallrye-parent.git</developerConnection>
     <url>https://github.com/smallrye/smallrye-parent</url>
-    <tag>22</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <distributionManagement>
