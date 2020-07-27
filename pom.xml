@@ -607,6 +607,37 @@
       </dependencies>
     </profile>
 
+    <!--                -->
+    <!-- Java 9 support -->
+    <!--                -->
+
+    <!-- This profile is activated when the baseline JDK version running tests is Java 9 -->
+    <profile>
+        <id>java9-test-classpath</id>
+        <activation>
+            <jdk>[9,10)</jdk>
+        </activation>
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <id>default-test</id>
+                            <configuration>
+                                <classesDirectory>${project.build.outputDirectory}/META-INF/versions/9</classesDirectory>
+                                <additionalClasspathElements>
+                                    <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
+                                </additionalClasspathElements>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </build>
+    </profile>
+
     <!-- This profile is activated when Java 9 or later is used to test a project that supports Java 8 -->
     <profile>
         <id>java8-test</id>
@@ -689,6 +720,38 @@
         </build>
     </profile>
 
+    <!--                 -->
+    <!-- Java 10 support -->
+    <!--                 -->
+
+    <!-- This profile is activated when the baseline JDK version running tests is Java 10 -->
+    <profile>
+        <id>java10-test-classpath</id>
+        <activation>
+            <jdk>[10,11)</jdk>
+        </activation>
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <id>default-test</id>
+                            <configuration>
+                                <classesDirectory>${project.build.outputDirectory}/META-INF/versions/10</classesDirectory>
+                                <additionalClasspathElements>
+                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/9</additionalClasspathElement>
+                                    <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
+                                </additionalClasspathElements>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </build>
+    </profile>
+
     <!-- This profile is activated when Java 10 or later is used to test a project that supports Java 9 -->
     <profile>
         <id>java9-test</id>
@@ -715,11 +778,9 @@
                             </goals>
                             <configuration>
                                 <jvm>${java9.home}/bin/java</jvm>
-                                <classesDirectory>${project.build.directory}/classes/META-INF/versions/9
-                                </classesDirectory>
+                                <classesDirectory>${project.build.outputDirectory}/META-INF/versions/9</classesDirectory>
                                 <additionalClasspathElements>
-                                    <additionalClasspathElement>${project.build.outputDirectory}
-                                    </additionalClasspathElement>
+                                    <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
                                 </additionalClasspathElements>
                             </configuration>
                         </execution>
@@ -774,6 +835,39 @@
         </build>
     </profile>
 
+    <!--                 -->
+    <!-- Java 11 support -->
+    <!--                 -->
+
+    <!-- This profile is activated when the baseline JDK version running tests is Java 11 -->
+    <profile>
+        <id>java11-test-classpath</id>
+        <activation>
+            <jdk>[11,12)</jdk>
+        </activation>
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <id>default-test</id>
+                            <configuration>
+                                <classesDirectory>${project.build.outputDirectory}/META-INF/versions/11</classesDirectory>
+                                <additionalClasspathElements>
+                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/10</additionalClasspathElement>
+                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/9</additionalClasspathElement>
+                                    <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
+                                </additionalClasspathElements>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </build>
+    </profile>
+
     <!-- This profile is activated when Java 11 or later is used to test a project that supports Java 10 -->
     <profile>
         <id>java10-test</id>
@@ -800,14 +894,10 @@
                             </goals>
                             <configuration>
                                 <jvm>${java10.home}/bin/java</jvm>
-                                <classesDirectory>${project.build.directory}/classes/META-INF/versions/10
-                                </classesDirectory>
+                                <classesDirectory>${project.build.outputDirectory}/META-INF/versions/10</classesDirectory>
                                 <additionalClasspathElements>
-                                    <additionalClasspathElement>
-                                        ${project.build.directory}/classes/META-INF/versions/9
-                                    </additionalClasspathElement>
-                                    <additionalClasspathElement>${project.build.outputDirectory}
-                                    </additionalClasspathElement>
+                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/9</additionalClasspathElement>
+                                    <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
                                 </additionalClasspathElements>
                             </configuration>
                         </execution>
@@ -862,6 +952,40 @@
         </build>
     </profile>
 
+    <!--                 -->
+    <!-- Java 12 support -->
+    <!--                 -->
+
+    <!-- This profile is activated when the baseline JDK version running tests is Java 12 -->
+    <profile>
+        <id>java12-test-classpath</id>
+        <activation>
+            <jdk>[12,13)</jdk>
+        </activation>
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <id>default-test</id>
+                            <configuration>
+                                <classesDirectory>${project.build.outputDirectory}/META-INF/versions/12</classesDirectory>
+                                <additionalClasspathElements>
+                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/11</additionalClasspathElement>
+                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/10</additionalClasspathElement>
+                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/9</additionalClasspathElement>
+                                    <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
+                                </additionalClasspathElements>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </build>
+    </profile>
+
     <!-- This profile is activated when Java 12 or later is used to test a project that supports Java 11 -->
     <profile>
         <id>java11-test</id>
@@ -888,17 +1012,11 @@
                             </goals>
                             <configuration>
                                 <jvm>${java11.home}/bin/java</jvm>
-                                <classesDirectory>${project.build.directory}/classes/META-INF/versions/11
-                                </classesDirectory>
+                                <classesDirectory>${project.build.outputDirectory}/META-INF/versions/11</classesDirectory>
                                 <additionalClasspathElements>
-                                    <additionalClasspathElement>
-                                        ${project.build.directory}/classes/META-INF/versions/10
-                                    </additionalClasspathElement>
-                                    <additionalClasspathElement>
-                                        ${project.build.directory}/classes/META-INF/versions/9
-                                    </additionalClasspathElement>
-                                    <additionalClasspathElement>${project.build.outputDirectory}
-                                    </additionalClasspathElement>
+                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/10</additionalClasspathElement>
+                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/9</additionalClasspathElement>
+                                    <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
                                 </additionalClasspathElements>
                             </configuration>
                         </execution>
@@ -953,6 +1071,41 @@
         </build>
     </profile>
 
+    <!--                 -->
+    <!-- Java 13 support -->
+    <!--                 -->
+
+    <!-- This profile is activated when the baseline JDK version running tests is Java 13 -->
+    <profile>
+        <id>java13-test-classpath</id>
+        <activation>
+            <jdk>[13,14)</jdk>
+        </activation>
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <id>default-test</id>
+                            <configuration>
+                                <classesDirectory>${project.build.outputDirectory}/META-INF/versions/13</classesDirectory>
+                                <additionalClasspathElements>
+                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/12</additionalClasspathElement>
+                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/11</additionalClasspathElement>
+                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/10</additionalClasspathElement>
+                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/9</additionalClasspathElement>
+                                    <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
+                                </additionalClasspathElements>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </build>
+    </profile>
+
     <!-- This profile is activated when Java 13 or later is used to test a project that supports Java 12 -->
     <profile>
         <id>java12-test</id>
@@ -979,20 +1132,12 @@
                             </goals>
                             <configuration>
                                 <jvm>${java12.home}/bin/java</jvm>
-                                <classesDirectory>${project.build.directory}/classes/META-INF/versions/12
-                                </classesDirectory>
+                                <classesDirectory>${project.build.outputDirectory}/META-INF/versions/12</classesDirectory>
                                 <additionalClasspathElements>
-                                    <additionalClasspathElement>
-                                        ${project.build.directory}/classes/META-INF/versions/11
-                                    </additionalClasspathElement>
-                                    <additionalClasspathElement>
-                                        ${project.build.directory}/classes/META-INF/versions/10
-                                    </additionalClasspathElement>
-                                    <additionalClasspathElement>
-                                        ${project.build.directory}/classes/META-INF/versions/9
-                                    </additionalClasspathElement>
-                                    <additionalClasspathElement>${project.build.outputDirectory}
-                                    </additionalClasspathElement>
+                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/11</additionalClasspathElement>
+                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/10</additionalClasspathElement>
+                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/9</additionalClasspathElement>
+                                    <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
                                 </additionalClasspathElements>
                             </configuration>
                         </execution>
@@ -1047,6 +1192,41 @@
         </build>
     </profile>
 
+    <!--                 -->
+    <!-- Java 14 support -->
+    <!--                 -->
+
+    <!-- This profile is activated when the baseline JDK version running tests is Java 14 -->
+    <profile>
+        <id>java14-test-classpath</id>
+        <activation>
+            <jdk>[14,15)</jdk>
+        </activation>
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <id>default-test</id>
+                            <configuration>
+                                <classesDirectory>${project.build.outputDirectory}/META-INF/versions/14</classesDirectory>
+                                <additionalClasspathElements>
+                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/13</additionalClasspathElement>
+                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/12</additionalClasspathElement>
+                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/11</additionalClasspathElement>
+                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/10</additionalClasspathElement>
+                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/9</additionalClasspathElement>
+                                    <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
+                                </additionalClasspathElements>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </build>
+    </profile>
 
     <!-- This profile is activated when Java 14 or later is used to test a project that supports Java 13 -->
     <profile>
@@ -1074,23 +1254,13 @@
                             </goals>
                             <configuration>
                                 <jvm>${java13.home}/bin/java</jvm>
-                                <classesDirectory>${project.build.directory}/classes/META-INF/versions/13
-                                </classesDirectory>
+                                <classesDirectory>${project.build.outputDirectory}/META-INF/versions/13</classesDirectory>
                                 <additionalClasspathElements>
-                                    <additionalClasspathElement>
-                                        ${project.build.directory}/classes/META-INF/versions/12
-                                    </additionalClasspathElement>
-                                    <additionalClasspathElement>
-                                        ${project.build.directory}/classes/META-INF/versions/11
-                                    </additionalClasspathElement>
-                                    <additionalClasspathElement>
-                                        ${project.build.directory}/classes/META-INF/versions/10
-                                    </additionalClasspathElement>
-                                    <additionalClasspathElement>
-                                        ${project.build.directory}/classes/META-INF/versions/9
-                                    </additionalClasspathElement>
-                                    <additionalClasspathElement>${project.build.outputDirectory}
-                                    </additionalClasspathElement>
+                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/12</additionalClasspathElement>
+                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/11</additionalClasspathElement>
+                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/10</additionalClasspathElement>
+                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/9</additionalClasspathElement>
+                                    <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
                                 </additionalClasspathElements>
                             </configuration>
                         </execution>
