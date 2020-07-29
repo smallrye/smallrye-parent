@@ -422,6 +422,24 @@
 
     <plugins>
       <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>default-compile</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+            <!-- Ensure that the logging generator does not generate invalid annotations -->
+            <configuration>
+              <compilerArgs>
+                <arg>-Aorg.jboss.logging.tools.addGeneratedAnnotation=false</arg>
+              </compilerArgs>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
         <version>${version.release.plugin}</version>
