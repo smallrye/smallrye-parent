@@ -59,7 +59,7 @@
     <version.smallrye.code.rules.plugin>1</version.smallrye.code.rules.plugin>
     <version.formatter.plugin>2.12.1</version.formatter.plugin>
     <version.impsort.plugin>1.4.1</version.impsort.plugin>
-    <version.jacoco.plugin>0.8.5</version.jacoco.plugin>
+    <version.jacoco.plugin>0.8.6</version.jacoco.plugin>
     <version.smallrye.plugin>1.0.0</version.smallrye.plugin>
 
     <!-- Cross plugins settings -->
