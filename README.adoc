@@ -51,6 +51,7 @@ property or properties are set as needed:
 * `java10.home`: this property must be set to the location of a Java 10 JDK installation
 * `java11.home`: this property must be set to the location of a Java 11 JDK installation
 * `java12.home`: this property must be set to the location of a Java 12 JDK installation
+* `java13.home`: this property must be set to the location of a Java 13 JDK installation
 
 In order to simplify development, it is recommended to project maintainers to set these
 properties in your personal Maven `settings.xml` file.
@@ -201,5 +202,6 @@ Note that this configuration causes the default `JAVA_HOME` environment to be se
 |build-test-java10|Run tests for Java 10 when `java10.home` is set and JDK 11 or later is used.|<<mr-jar-testing>>
 |build-test-java11|Run tests for Java 11 when `java11.home` is set and JDK 12 or later is used.|<<mr-jar-testing>>
 |build-test-java12|Run tests for Java 12 when `java12.home` is set and JDK 13 or later is used.|<<mr-jar-testing>>
+|build-test-java13|Run tests for Java 13 when `java13.home` is set and JDK 14 or later is used.|<<mr-jar-testing>>
 |===
 
