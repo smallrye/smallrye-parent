@@ -21,7 +21,7 @@
     <version.jakarta.enterprise.cdi.api>2.0.2</version.jakarta.enterprise.cdi.api>
     <version.jakarta.json-p.api>1.1.6</version.jakarta.json-p.api>
     <version.jakarta.json-b.api>1.0.2</version.jakarta.json-b.api>
-    <version.jakarta.ws.rs.api>2.1.6</version.jakarta.ws.rs.api>
+    <version.jakarta.ws.rs.api>3.0.0</version.jakarta.ws.rs.api>
     <version.jakarta.jms.api>2.0.3</version.jakarta.jms.api>
 
     <version.org.jboss.logging>3.4.1.Final</version.org.jboss.logging>
