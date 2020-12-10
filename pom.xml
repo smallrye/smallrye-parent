@@ -39,6 +39,7 @@
     <version.org.jboss.arquillian.wildfly>3.0.1.Final</version.org.jboss.arquillian.wildfly>
     <version.junit>4.13.1</version.junit>
     <version.junit5>5.7.0</version.junit5>
+    <version.weld.junit>2.0.1.Final</version.weld.junit>
     <version.rest-assured>4.3.2</version.rest-assured>
     <version.testng>6.14.3</version.testng>
     <version.testcontainers>1.15.0</version.testcontainers>
@@ -217,15 +218,21 @@
         <version>${version.junit}</version>
       </dependency>
       <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter</artifactId>
-        <version>${version.junit5}</version>
-        <scope>test</scope>
+        <groupId>org.jboss.weld</groupId>
+        <artifactId>weld-junit4</artifactId>
+        <version>${version.weld.junit}</version>
       </dependency>
       <dependency>
-        <groupId>org.junit.vintage</groupId>
-        <artifactId>junit-vintage-engine</artifactId>
+        <groupId>org.junit</groupId>
+        <artifactId>junit-bom</artifactId>
         <version>${version.junit5}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.weld</groupId>
+        <artifactId>weld-junit5</artifactId>
+        <version>${version.weld.junit}</version>
         <scope>test</scope>
       </dependency>
       <dependency>
