@@ -27,8 +27,8 @@
     <version.org.jboss.logging>3.4.1.Final</version.org.jboss.logging>
     <version.org.jboss.logging-processor>2.2.1.Final</version.org.jboss.logging-processor>
     <version.weld.api>3.1.Final</version.weld.api>
-    <version.weld.core>3.1.5.Final</version.weld.core>
-    <version.org.jboss.jandex>2.2.2.Final</version.org.jboss.jandex>
+    <version.weld.core>3.1.6.Final</version.weld.core>
+    <version.org.jboss.jandex>2.2.3.Final</version.org.jboss.jandex>
     <version.glassfish.json>1.1.6</version.glassfish.json>
 
     <!-- Testing versions -->
@@ -39,7 +39,7 @@
     <version.org.jboss.arquillian.wildfly>3.0.1.Final</version.org.jboss.arquillian.wildfly>
     <version.junit>4.13.1</version.junit>
     <version.junit5>5.7.0</version.junit5>
-    <version.weld.junit>2.0.1.Final</version.weld.junit>
+    <version.weld.junit>2.0.2.Final</version.weld.junit>
     <version.rest-assured>4.3.3</version.rest-assured>
     <version.testng>6.14.3</version.testng>
     <version.testcontainers>1.15.1</version.testcontainers>
