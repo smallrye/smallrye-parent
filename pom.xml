@@ -62,6 +62,7 @@
     <version.impsort.plugin>1.6.0</version.impsort.plugin>
     <version.jacoco.plugin>0.8.6</version.jacoco.plugin>
     <version.smallrye.plugin>1.0.0</version.smallrye.plugin>
+    <version.versions.plugin>2.8.1</version.versions.plugin>
 
     <!-- Cross plugins settings -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -528,6 +529,14 @@
             </goals>
           </execution>
         </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>versions-maven-plugin</artifactId>
+        <version>${version.versions.plugin}</version>
+        <configuration>
+          <generateBackupPoms>false</generateBackupPoms>
+        </configuration>
       </plugin>
     </plugins>
   </build>
