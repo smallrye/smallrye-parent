@@ -33,7 +33,7 @@
 
     <!-- Testing versions -->
     <version.assertj>3.19.0</version.assertj>
-    <version.awaitility>4.0.3</version.awaitility>
+    <version.awaitility>4.1.0</version.awaitility>
     <version.org.jboss.arquillian>1.6.0.Final</version.org.jboss.arquillian>
     <version.org.jboss.arquillian.container.weld-embedded>2.1.0.Final</version.org.jboss.arquillian.container.weld-embedded>
     <version.org.jboss.arquillian.wildfly>3.0.1.Final</version.org.jboss.arquillian.wildfly>
