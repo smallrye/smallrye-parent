@@ -37,7 +37,7 @@
     <version.org.jboss.arquillian>1.6.0.Final</version.org.jboss.arquillian>
     <version.org.jboss.arquillian.container.weld-embedded>2.1.0.Final</version.org.jboss.arquillian.container.weld-embedded>
     <version.org.jboss.arquillian.wildfly>3.0.1.Final</version.org.jboss.arquillian.wildfly>
-    <version.junit>4.13.1</version.junit>
+    <version.junit>4.13.2</version.junit>
     <version.junit5>5.7.1</version.junit5>
     <version.weld.junit>2.0.2.Final</version.weld.junit>
     <version.rest-assured>4.3.3</version.rest-assured>
