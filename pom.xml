@@ -27,7 +27,7 @@
     <version.org.jboss.logging>3.4.1.Final</version.org.jboss.logging>
     <version.org.jboss.logging-processor>2.2.1.Final</version.org.jboss.logging-processor>
     <version.weld.api>3.1.Final</version.weld.api>
-    <version.weld.core>3.1.6.Final</version.weld.core>
+    <version.weld.core>3.1.7.Final</version.weld.core>
     <version.org.jboss.jandex>2.2.3.Final</version.org.jboss.jandex>
     <version.glassfish.json>1.1.6</version.glassfish.json>
 
@@ -37,12 +37,12 @@
     <version.org.jboss.arquillian>1.6.0.Final</version.org.jboss.arquillian>
     <version.org.jboss.arquillian.container.weld-embedded>2.1.0.Final</version.org.jboss.arquillian.container.weld-embedded>
     <version.org.jboss.arquillian.wildfly>3.0.1.Final</version.org.jboss.arquillian.wildfly>
-    <version.junit>4.13.1</version.junit>
+    <version.junit>4.13.2</version.junit>
     <version.junit5>5.7.1</version.junit5>
     <version.weld.junit>2.0.2.Final</version.weld.junit>
     <version.rest-assured>4.3.3</version.rest-assured>
     <version.testng>6.14.3</version.testng>
-    <version.testcontainers>1.15.2</version.testcontainers>
+    <version.testcontainers>1.15.3</version.testcontainers>
     <version.wildfly>18.0.1.Final</version.wildfly>
 
     <!-- Plugin versions -->
@@ -58,10 +58,11 @@
     <version.site.plugin>3.9.1</version.site.plugin>
     <version.surefire.plugin>2.22.2</version.surefire.plugin>
     <version.smallrye.code.rules.plugin>1</version.smallrye.code.rules.plugin>
-    <version.formatter.plugin>2.14.0</version.formatter.plugin>
+    <version.formatter.plugin>2.15.0</version.formatter.plugin>
     <version.impsort.plugin>1.6.0</version.impsort.plugin>
-    <version.jacoco.plugin>0.8.6</version.jacoco.plugin>
+    <version.jacoco.plugin>0.8.7</version.jacoco.plugin>
     <version.smallrye.plugin>1.0.0</version.smallrye.plugin>
+    <version.versions.plugin>2.8.1</version.versions.plugin>
 
     <!-- Cross plugins settings -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -528,6 +529,14 @@
             </goals>
           </execution>
         </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>versions-maven-plugin</artifactId>
+        <version>${version.versions.plugin}</version>
+        <configuration>
+          <generateBackupPoms>false</generateBackupPoms>
+        </configuration>
       </plugin>
     </plugins>
   </build>
