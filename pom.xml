@@ -24,11 +24,11 @@
     <version.jakarta.ws.rs.api>2.1.6</version.jakarta.ws.rs.api>
     <version.jakarta.jms.api>2.0.3</version.jakarta.jms.api>
 
-    <version.org.jboss.logging>3.4.1.Final</version.org.jboss.logging>
+    <version.org.jboss.logging>3.4.2.Final</version.org.jboss.logging>
     <version.org.jboss.logging-processor>2.2.1.Final</version.org.jboss.logging-processor>
     <version.weld.api>3.1.Final</version.weld.api>
     <version.weld.core>3.1.7.Final</version.weld.core>
-    <version.org.jboss.jandex>2.2.3.Final</version.org.jboss.jandex>
+    <version.org.jboss.jandex>2.3.0.Final</version.org.jboss.jandex>
     <version.glassfish.json>1.1.6</version.glassfish.json>
 
     <!-- Testing versions -->
@@ -38,9 +38,9 @@
     <version.org.jboss.arquillian.container.weld-embedded>2.1.0.Final</version.org.jboss.arquillian.container.weld-embedded>
     <version.org.jboss.arquillian.wildfly>3.0.1.Final</version.org.jboss.arquillian.wildfly>
     <version.junit>4.13.2</version.junit>
-    <version.junit5>5.7.1</version.junit5>
+    <version.junit5>5.7.2</version.junit5>
     <version.weld.junit>2.0.2.Final</version.weld.junit>
-    <version.rest-assured>4.3.3</version.rest-assured>
+    <version.rest-assured>4.4.0</version.rest-assured>
     <version.testng>6.14.3</version.testng>
     <version.testcontainers>1.15.3</version.testcontainers>
     <version.wildfly>18.0.1.Final</version.wildfly>
@@ -51,7 +51,7 @@
     <version.gpg.plugin>3.0.1</version.gpg.plugin>
     <version.install.plugin>2.5.2</version.install.plugin>
     <version.jar.plugin>3.2.0</version.jar.plugin>
-    <version.javadoc.plugin>3.2.0</version.javadoc.plugin>
+    <version.javadoc.plugin>3.3.0</version.javadoc.plugin>
     <version.nexus.staging.plugin>1.6.8</version.nexus.staging.plugin>
     <version.release.plugin>2.5.3</version.release.plugin>
     <version.source.plugin>3.2.1</version.source.plugin>
@@ -59,7 +59,7 @@
     <version.surefire.plugin>2.22.2</version.surefire.plugin>
     <version.smallrye.code.rules.plugin>1</version.smallrye.code.rules.plugin>
     <version.formatter.plugin>2.15.0</version.formatter.plugin>
-    <version.impsort.plugin>1.6.0</version.impsort.plugin>
+    <version.impsort.plugin>1.6.2</version.impsort.plugin>
     <version.jacoco.plugin>0.8.7</version.jacoco.plugin>
     <version.smallrye.plugin>1.0.0</version.smallrye.plugin>
     <version.versions.plugin>2.8.1</version.versions.plugin>
