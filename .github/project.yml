@@ -1,4 +1,4 @@
 name: SmallRye Parent
 release:
-  current-version: 27
-  next-version: 28-SNAPSHOT
+  current-version: 28
+  next-version: 29-SNAPSHOT
