@@ -16,32 +16,32 @@
 
   <properties>
     <!-- Dependency versions -->
-    <version.jakarta.api>8.0.0</version.jakarta.api>
-    <version.jakarta.annotation.api>1.3.5</version.jakarta.annotation.api>
-    <version.jakarta.enterprise.cdi.api>2.0.2</version.jakarta.enterprise.cdi.api>
-    <version.jakarta.json-p.api>1.1.6</version.jakarta.json-p.api>
-    <version.jakarta.json-b.api>1.0.2</version.jakarta.json-b.api>
-    <version.jakarta.ws.rs.api>2.1.6</version.jakarta.ws.rs.api>
+    <version.jakarta.api>9.0.0</version.jakarta.api>
+    <version.jakarta.annotation.api>2.0.0</version.jakarta.annotation.api>
+    <version.jakarta.enterprise.cdi.api>3.0.0</version.jakarta.enterprise.cdi.api>
+    <version.jakarta.json-p.api>2.0.0</version.jakarta.json-p.api>
+    <version.jakarta.json-b.api>2.0.0</version.jakarta.json-b.api>
+    <version.jakarta.ws.rs.api>3.0.0</version.jakarta.ws.rs.api>
     <version.jakarta.jms.api>2.0.3</version.jakarta.jms.api>
 
     <version.org.jboss.logging>3.4.2.Final</version.org.jboss.logging>
     <version.org.jboss.logging-processor>2.2.1.Final</version.org.jboss.logging-processor>
-    <version.weld.api>3.1.Final</version.weld.api>
-    <version.weld.core>3.1.7.SP1</version.weld.core>
+    <version.weld.api>4.0.Final</version.weld.api>
+    <version.weld.core.impl>4.0.0.Final</version.weld.core.impl>
     <version.org.jboss.jandex>2.3.0.Final</version.org.jboss.jandex>
-    <version.glassfish.json>1.1.6</version.glassfish.json>
+    <version.glassfish.json>2.0.1</version.glassfish.json>
 
     <!-- Testing versions -->
     <version.assertj>3.19.0</version.assertj>
     <version.awaitility>4.1.0</version.awaitility>
-    <version.org.jboss.arquillian>1.6.0.Final</version.org.jboss.arquillian>
-    <version.org.jboss.arquillian.container.weld-embedded>2.1.0.Final</version.org.jboss.arquillian.container.weld-embedded>
+    <version.org.jboss.arquillian>1.7.0.Alpha9</version.org.jboss.arquillian>
+    <version.org.jboss.arquillian.container.weld-embedded>3.0.0.Alpha1</version.org.jboss.arquillian.container.weld-embedded>
     <version.org.jboss.arquillian.wildfly>3.0.1.Final</version.org.jboss.arquillian.wildfly>
     <version.junit>4.13.2</version.junit>
     <version.junit5>5.7.2</version.junit5>
-    <version.weld.junit>2.0.2.Final</version.weld.junit>
+    <version.weld.junit>3.0.0.Final</version.weld.junit>
     <version.rest-assured>4.4.0</version.rest-assured>
-    <version.testng>6.14.3</version.testng>
+    <version.testng>7.4.0</version.testng>
     <version.testcontainers>1.15.3</version.testcontainers>
     <version.wildfly>18.0.1.Final</version.wildfly>
 
@@ -176,7 +176,7 @@
       <dependency>
         <groupId>org.jboss.weld</groupId>
         <artifactId>weld-core-impl</artifactId>
-        <version>${version.weld.core}</version>
+        <version>${version.weld.core.impl}</version>
       </dependency>
 
       <!-- Glassfish -->
