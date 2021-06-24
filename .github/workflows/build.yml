@@ -2,7 +2,7 @@ name: SmallRye Build
 
 on:
   push:
-    branches: 
+    branches:
       - master
     paths-ignore:
       - '.gitignore'
@@ -19,12 +19,25 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-        name: Checkout
+        name: checkout
 
       - uses: AdoptOpenJDK/install-jdk@v1
-        name: Set up JDK 11
+        name: set up jdk 11
         with:
           version: 11
 
       - name: Maven
-        run: mvn -B formatter:validate verify --file pom.xml
+        run: mvn -B formatter:validate install --file pom.xml
+
+      - uses: actions/checkout@v2
+        name: checkout smallrye-config
+        with:
+          repository: smallrye/smallrye-config
+          path: smallrye-config
+
+      - name: test with smallrye-config
+        run: |
+          cd smallrye-config
+          mvn versions:update-parent -DallowSnapshots=true -N
+          git diff pom.xml
+          mvn install
