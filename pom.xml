@@ -16,6 +16,7 @@
 
   <modules>
     <module>full-parent</module>
+    <module>full-parent-jakarta</module>
   </modules>
 
   <properties>
