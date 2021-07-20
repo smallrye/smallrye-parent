@@ -145,6 +145,7 @@
                 <groupId>org.jboss.weld</groupId>
                 <artifactId>weld-junit4</artifactId>
                 <version>${version.weld.junit}</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.junit</groupId>
