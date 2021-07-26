@@ -20,7 +20,7 @@
 
   <properties>
     <!-- Plugin versions -->
-    <version.asciidoctor.plugin>2.2.0</version.asciidoctor.plugin>
+    <version.asciidoctor.plugin>2.2.1</version.asciidoctor.plugin>
     <version.compiler.plugin>3.8.1</version.compiler.plugin>
     <version.gpg.plugin>3.0.1</version.gpg.plugin>
     <version.install.plugin>2.5.2</version.install.plugin>
