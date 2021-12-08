@@ -313,7 +313,7 @@
         <artifactId>impsort-maven-plugin</artifactId>
         <version>${version.impsort.plugin}</version>
         <configuration>
-          <groups>java.,javax.,org.,com.</groups>
+          <groups>java.,javax.,jakarta.,org.,com.</groups>
           <staticGroups>*</staticGroups>
           <skip>${format.skip}</skip>
           <removeUnused>true</removeUnused>
