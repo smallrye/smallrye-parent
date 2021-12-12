@@ -35,8 +35,8 @@
         <version.assertj>3.21.0</version.assertj>
         <version.awaitility>4.1.1</version.awaitility>
         <version.org.jboss.arquillian>1.7.0.Alpha10</version.org.jboss.arquillian>
-        <version.org.jboss.arquillian.container.weld-embedded>3.0.0.Final</version.org.jboss.arquillian.container.weld-embedded>
-        <version.org.jboss.arquillian.wildfly>4.0.0.Alpha1</version.org.jboss.arquillian.wildfly>
+        <version.org.jboss.arquillian.container.weld-embedded>3.0.1.Final</version.org.jboss.arquillian.container.weld-embedded>
+        <version.org.jboss.arquillian.wildfly>5.0.0.Alpha2</version.org.jboss.arquillian.wildfly>
         <version.junit>4.13.2</version.junit>
         <version.junit5>5.8.2</version.junit5>
         <version.weld.junit>3.0.0.Final</version.weld.junit>
