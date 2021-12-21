@@ -5,7 +5,7 @@
     <parent>
         <groupId>io.smallrye</groupId>
         <artifactId>smallrye-build-parent</artifactId>
-        <version>33-SNAPSHOT</version>
+        <version>33</version>
     </parent>
 
     <artifactId>smallrye-jakarta-parent</artifactId>
