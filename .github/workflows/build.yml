@@ -24,7 +24,7 @@ jobs:
       - uses: AdoptOpenJDK/install-jdk@v1
         name: set up jdk 11
         with:
-          version: 11
+          version: 8
 
       - name: Maven
         run: mvn -B formatter:validate install --file pom.xml
