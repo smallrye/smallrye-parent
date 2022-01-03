@@ -32,7 +32,7 @@
         <version.glassfish.json>2.0.1</version.glassfish.json>
 
         <!-- Testing versions -->
-        <version.assertj>3.21.0</version.assertj>
+        <version.assertj>3.22.0</version.assertj>
         <version.awaitility>4.1.1</version.awaitility>
         <version.org.jboss.arquillian>1.7.0.Alpha10</version.org.jboss.arquillian>
         <version.org.jboss.arquillian.container.weld-embedded>3.0.1.Final</version.org.jboss.arquillian.container.weld-embedded>
