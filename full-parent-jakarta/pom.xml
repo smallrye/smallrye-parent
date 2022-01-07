@@ -28,7 +28,7 @@
         <version.org.jboss.logging-processor>2.2.1.Final</version.org.jboss.logging-processor>
         <version.weld.api>4.0.Final</version.weld.api>
         <version.weld.core>4.0.1.SP1</version.weld.core>
-        <version.org.jboss.jandex>2.4.1.Final</version.org.jboss.jandex>
+        <version.org.jboss.jandex>2.4.2.Final</version.org.jboss.jandex>
         <version.glassfish.json>2.0.1</version.glassfish.json>
 
         <!-- Testing versions -->
