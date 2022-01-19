@@ -18,7 +18,7 @@
         <!-- Dependency versions -->
         <version.jakarta.api>8.0.0</version.jakarta.api>
         <version.jakarta.annotation.api>1.3.5</version.jakarta.annotation.api>
-        <version.jakarta.enterprise.cdi.api>2.0.2</version.jakarta.enterprise.cdi.api>
+        <version.jakarta.enterprise.cdi.api>3.0.0</version.jakarta.enterprise.cdi.api>
         <version.jakarta.json-p.api>1.1.6</version.jakarta.json-p.api>
         <version.jakarta.json-b.api>1.0.2</version.jakarta.json-b.api>
         <version.jakarta.ws.rs.api>2.1.6</version.jakarta.ws.rs.api>
