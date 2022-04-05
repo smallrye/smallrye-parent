@@ -20,7 +20,7 @@
         <version.jakarta.annotation.api>2.0.0</version.jakarta.annotation.api>
         <version.jakarta.enterprise.cdi.api>3.0.0</version.jakarta.enterprise.cdi.api>
         <version.jakarta.json-p.api>2.0.1</version.jakarta.json-p.api>
-        <version.jakarta.json-b.api>2.0.0</version.jakarta.json-b.api>
+        <version.jakarta.json-b.api>3.0.0</version.jakarta.json-b.api>
         <version.jakarta.ws.rs.api>3.0.0</version.jakarta.ws.rs.api>
         <version.jakarta.jms.api>3.0.0</version.jakarta.jms.api>
 
