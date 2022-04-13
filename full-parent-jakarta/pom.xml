@@ -42,7 +42,7 @@
         <version.weld.junit>3.0.0.Final</version.weld.junit>
         <version.rest-assured>4.5.1</version.rest-assured>
         <version.testng>7.5</version.testng>
-        <version.testcontainers>1.16.3</version.testcontainers>
+        <version.testcontainers>1.17.0</version.testcontainers>
         <version.wildfly>18.0.1.Final</version.wildfly>
     </properties>
 
