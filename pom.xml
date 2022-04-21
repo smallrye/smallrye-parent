@@ -26,7 +26,7 @@
     <version.gpg.plugin>3.0.1</version.gpg.plugin>
     <version.install.plugin>2.5.2</version.install.plugin>
     <version.jar.plugin>3.2.2</version.jar.plugin>
-    <version.javadoc.plugin>3.3.2</version.javadoc.plugin>
+    <version.javadoc.plugin>3.4.0</version.javadoc.plugin>
     <!-- Do not update: https://issues.sonatype.org/browse/NEXUS-31214 -->
     <version.nexus.staging.plugin>1.6.8</version.nexus.staging.plugin>
     <version.release.plugin>2.5.3</version.release.plugin>
