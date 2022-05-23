@@ -38,7 +38,7 @@
     <version.impsort.plugin>1.6.2</version.impsort.plugin>
     <version.jacoco.plugin>0.8.8</version.jacoco.plugin>
     <version.smallrye.plugin>1.0.0</version.smallrye.plugin>
-    <version.versions.plugin>2.10.0</version.versions.plugin>
+    <version.versions.plugin>2.11.0</version.versions.plugin>
 
     <!-- Cross plugins settings -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
