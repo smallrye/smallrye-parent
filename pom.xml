@@ -24,7 +24,7 @@
     <version.asciidoctor.plugin>2.2.2</version.asciidoctor.plugin>
     <version.compiler.plugin>3.10.1</version.compiler.plugin>
     <version.gpg.plugin>3.0.1</version.gpg.plugin>
-    <version.install.plugin>2.5.2</version.install.plugin>
+    <version.install.plugin>3.0.0</version.install.plugin>
     <version.jar.plugin>3.2.2</version.jar.plugin>
     <version.javadoc.plugin>3.4.0</version.javadoc.plugin>
     <!-- Do not update: https://issues.sonatype.org/browse/NEXUS-31214 -->
