@@ -32,7 +32,7 @@ multi-release JAR layers.
 
 In order to select the correct class files for the given Java version, the `<release>` property is used.
 This prevents accidental usage of APIs which are only present in later versions than the one
-being compiled.  However there is a limitation to this strategy: Java 9 and later do not provide runtime information
+being compiled. However there is a limitation to this strategy: Java 9 and later do not provide runtime information
 for non-standard Java 8 classes such as `sun.misc.Unsafe`.  If your project needs to compile against these classes,
 you must use the dependency plugin as described <<mr-jar-sun-misc,below>>.
 
@@ -52,6 +52,10 @@ property or properties are set as needed:
 * `java11.home`: this property must be set to the location of a Java 11 JDK installation
 * `java12.home`: this property must be set to the location of a Java 12 JDK installation
 * `java13.home`: this property must be set to the location of a Java 13 JDK installation
+* `java14.home`: this property must be set to the location of a Java 13 JDK installation
+* `java15.home`: this property must be set to the location of a Java 13 JDK installation
+* `java16.home`: this property must be set to the location of a Java 13 JDK installation
+* `java17.home`: this property must be set to the location of a Java 13 JDK installation
 
 In order to simplify development, it is recommended to project maintainers to set these
 properties in your personal Maven `settings.xml` file.
@@ -203,5 +207,9 @@ Note that this configuration causes the default `JAVA_HOME` environment to be se
 |build-test-java11|Run tests for Java 11 when `java11.home` is set and JDK 12 or later is used.|<<mr-jar-testing>>
 |build-test-java12|Run tests for Java 12 when `java12.home` is set and JDK 13 or later is used.|<<mr-jar-testing>>
 |build-test-java13|Run tests for Java 13 when `java13.home` is set and JDK 14 or later is used.|<<mr-jar-testing>>
+|build-test-java14|Run tests for Java 14 when `java14.home` is set and JDK 15 or later is used.|<<mr-jar-testing>>
+|build-test-java15|Run tests for Java 15 when `java15.home` is set and JDK 16 or later is used.|<<mr-jar-testing>>
+|build-test-java16|Run tests for Java 16 when `java16.home` is set and JDK 17 or later is used.|<<mr-jar-testing>>
+|build-test-java17|Run tests for Java 17 when `java17.home` is set and JDK 18 or later is used.|<<mr-jar-testing>>
 |===
 
