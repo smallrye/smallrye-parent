@@ -22,35 +22,6 @@ jobs:
         name: checkout
 
       - uses: AdoptOpenJDK/install-jdk@v1
-        name: set up jdk 8
-        with:
-          version: 8
-
-      - name: Maven
-        run: mvn -B -ntp formatter:validate install
-
-      - uses: actions/checkout@v2
-        name: checkout smallrye-config
-        with:
-          repository: smallrye/smallrye-config
-          path: smallrye-config
-
-      - name: test with smallrye-config
-        run: |
-          cd smallrye-config
-          mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
-          git diff pom.xml
-          mvn -B -ntp install
-
-  build-jakarta:
-    runs-on: ubuntu-latest
-    name: build with jakarta
-
-    steps:
-      - uses: actions/checkout@v2
-        name: checkout
-
-      - uses: AdoptOpenJDK/install-jdk@v1
         name: set up jdk 11
         with:
           version: 11
@@ -64,10 +35,11 @@ jobs:
           repository: smallrye/smallrye-config
           path: smallrye-config
 
-      - name: test with smallrye-config
-        run: |
-          cd smallrye-config
-          mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
-          sh to-jakarta.sh
-          git diff pom.xml
-          mvn -B -ntp install -Dtck.skip.owb=true
+#       Needs updates to work properly with Jakarta. The auto migration is not enough.
+#      - name: test with smallrye-config
+#        run: |
+#          cd smallrye-config
+#          mvn -B -ntp versions:update-parent -DallowSnapshots=true
+#          sh to-jakarta.sh
+#          git diff pom.xml
+#          mvn -B -ntp install -Dtck.skip.owb=true
