@@ -254,13 +254,13 @@
             </excludes>
           </configuration>
           <executions>
-              <execution>
-                  <id>prepare-agent</id>
-                  <goals>
-                      <goal>prepare-agent</goal>
-                  </goals>
-                  <phase>generate-test-resources</phase>
-              </execution>
+            <execution>
+              <id>prepare-agent</id>
+              <goals>
+                <goal>prepare-agent</goal>
+              </goals>
+              <phase>generate-test-resources</phase>
+            </execution>
           </executions>
         </plugin>
         <plugin>
@@ -436,12 +436,12 @@
     <!-- MR JAR support starts here-->
 
     <profile>
-      <id>compile-java8-release-flag</id>
+      <id>compile-java11-release-flag</id>
       <activation>
         <file>
-          <exists>${basedir}/build-release-8</exists>
+          <exists>${basedir}/build-release-11</exists>
         </file>
-        <jdk>[9,)</jdk>
+        <jdk>[11,)</jdk>
       </activation>
       <build>
         <plugins>
@@ -456,7 +456,7 @@
                   <goal>compile</goal>
                 </goals>
                 <configuration>
-                  <release>8</release>
+                  <release>11</release>
                 </configuration>
               </execution>
             </executions>
@@ -465,762 +465,15 @@
       </build>
     </profile>
 
-    <!-- This profile is manually activated by a property to include jdk-misc.jar in the base layer build. -->
-    <profile>
-        <id>include-jdk-misc</id>
-        <activation>
-            <file>
-                <exists>${basedir}/build-include-jdk-misc</exists>
-            </file>
-            <jdk>[9,)</jdk>
-        </activation>
-        <build>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>default-compile</id>
-                            <phase>compile</phase>
-                            <goals>
-                                <goal>compile</goal>
-                            </goals>
-                            <configuration>
-                                <release>8</release>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </build>
-      <dependencies>
-        <dependency>
-          <groupId>org.jboss</groupId>
-          <artifactId>jdk-misc</artifactId>
-          <version>${version.jdk-misc}</version>
-          <optional>true</optional>
-        </dependency>
-      </dependencies>
-    </profile>
-
-    <!--                -->
-    <!-- Java 9 support -->
-    <!--                -->
-
-    <!-- This profile is activated when the baseline JDK version running tests is Java 9 -->
-    <profile>
-        <id>java9-test-classpath</id>
-        <activation>
-            <jdk>[9,10)</jdk>
-        </activation>
-        <build>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>default-test</id>
-                            <configuration>
-                                <classesDirectory>${project.build.outputDirectory}/META-INF/versions/9</classesDirectory>
-                                <additionalClasspathElements>
-                                    <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
-                                </additionalClasspathElements>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </build>
-    </profile>
-
-    <!-- This profile is activated when Java 9 or later is used to test a project that supports Java 8 -->
-    <profile>
-        <id>java8-test</id>
-        <activation>
-            <jdk>[9,)</jdk>
-            <property>
-                <name>java8.home</name>
-            </property>
-            <file>
-                <exists>${basedir}/build-test-java8</exists>
-            </file>
-        </activation>
-        <build>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>java8-test</id>
-                            <phase>test</phase>
-                            <goals>
-                                <goal>test</goal>
-                            </goals>
-                            <configuration>
-                                <jvm>${java8.home}/bin/java</jvm>
-                                <additionalClasspathElements>
-                                    <additionalClasspathElement>${java8.home}/lib/tools.jar</additionalClasspathElement>
-                                </additionalClasspathElements>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </build>
-    </profile>
-
-    <!-- This profile is activated when Java 9 or later is used to build -->
-    <profile>
-        <id>java9-mr-build</id>
-        <activation>
-            <jdk>[9,)</jdk>
-            <file>
-                <exists>${basedir}/src/main/java9</exists>
-            </file>
-        </activation>
-        <build>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>compile-java9</id>
-                            <phase>compile</phase>
-                            <goals>
-                                <goal>compile</goal>
-                            </goals>
-                            <configuration>
-                                <release>9</release>
-                              <compileSourceRoots>
-                                <compileSourceRoot>${project.basedir}/src/main/java9</compileSourceRoot>
-                              </compileSourceRoots>
-                              <multiReleaseOutput>true</multiReleaseOutput>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <configuration>
-                        <archive>
-                            <manifestEntries>
-                                <Multi-Release>true</Multi-Release>
-                            </manifestEntries>
-                        </archive>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </build>
-    </profile>
-
     <!--                 -->
-    <!-- Java 10 support -->
+    <!-- Java 17 support -->
     <!--                 -->
 
-    <!-- This profile is activated when the baseline JDK version running tests is Java 10 -->
+    <!-- This profile is activated when the baseline JDK version running tests is Java 17 -->
     <profile>
-        <id>java10-test-classpath</id>
-        <activation>
-            <jdk>[10,11)</jdk>
-        </activation>
-        <build>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>default-test</id>
-                            <configuration>
-                                <classesDirectory>${project.build.outputDirectory}/META-INF/versions/10</classesDirectory>
-                                <additionalClasspathElements>
-                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/9</additionalClasspathElement>
-                                    <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
-                                </additionalClasspathElements>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </build>
-    </profile>
-
-    <!-- This profile is activated when Java 10 or later is used to test a project that supports Java 9 -->
-    <profile>
-        <id>java9-test</id>
-        <activation>
-            <jdk>[10,)</jdk>
-            <property>
-                <name>java9.home</name>
-            </property>
-            <file>
-                <exists>${basedir}/build-test-java9</exists>
-            </file>
-        </activation>
-        <build>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>java9-test</id>
-                            <phase>test</phase>
-                            <goals>
-                                <goal>test</goal>
-                            </goals>
-                            <configuration>
-                                <jvm>${java9.home}/bin/java</jvm>
-                                <classesDirectory>${project.build.outputDirectory}/META-INF/versions/9</classesDirectory>
-                                <additionalClasspathElements>
-                                    <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
-                                </additionalClasspathElements>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </build>
-    </profile>
-
-    <!-- This profile is activated when Java 10 or later is used to build -->
-    <profile>
-        <id>java10-mr-build</id>
-        <activation>
-            <jdk>[10,)</jdk>
-            <file>
-                <exists>${basedir}/src/main/java10</exists>
-            </file>
-        </activation>
-        <build>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>compile-java10</id>
-                            <phase>compile</phase>
-                            <goals>
-                                <goal>compile</goal>
-                            </goals>
-                            <configuration>
-                                <release>10</release>
-                              <compileSourceRoots>
-                                <compileSourceRoot>${project.basedir}/src/main/java10</compileSourceRoot>
-                              </compileSourceRoots>
-                              <multiReleaseOutput>true</multiReleaseOutput>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <configuration>
-                        <archive>
-                            <manifestEntries>
-                                <Multi-Release>true</Multi-Release>
-                            </manifestEntries>
-                        </archive>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </build>
-    </profile>
-
-    <!--                 -->
-    <!-- Java 11 support -->
-    <!--                 -->
-
-    <!-- This profile is activated when the baseline JDK version running tests is Java 11 -->
-    <profile>
-        <id>java11-test-classpath</id>
-        <activation>
-            <jdk>[11,12)</jdk>
-        </activation>
-        <build>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>default-test</id>
-                            <configuration>
-                                <classesDirectory>${project.build.outputDirectory}/META-INF/versions/11</classesDirectory>
-                                <additionalClasspathElements>
-                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/10</additionalClasspathElement>
-                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/9</additionalClasspathElement>
-                                    <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
-                                </additionalClasspathElements>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </build>
-    </profile>
-
-    <!-- This profile is activated when Java 11 or later is used to test a project that supports Java 10 -->
-    <profile>
-        <id>java10-test</id>
-        <activation>
-            <jdk>[11,)</jdk>
-            <property>
-                <name>java10.home</name>
-            </property>
-            <file>
-                <exists>${basedir}/build-test-java10</exists>
-            </file>
-        </activation>
-        <build>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>java10-test</id>
-                            <phase>test</phase>
-                            <goals>
-                                <goal>test</goal>
-                            </goals>
-                            <configuration>
-                                <jvm>${java10.home}/bin/java</jvm>
-                                <classesDirectory>${project.build.outputDirectory}/META-INF/versions/10</classesDirectory>
-                                <additionalClasspathElements>
-                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/9</additionalClasspathElement>
-                                    <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
-                                </additionalClasspathElements>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </build>
-    </profile>
-
-    <!-- This profile is activated when Java 11 or later is used to build -->
-    <profile>
-        <id>java11-mr-build</id>
-        <activation>
-            <jdk>[11,)</jdk>
-            <file>
-                <exists>${basedir}/src/main/java11</exists>
-            </file>
-        </activation>
-        <build>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>compile-java11</id>
-                            <phase>compile</phase>
-                            <goals>
-                                <goal>compile</goal>
-                            </goals>
-                            <configuration>
-                                <release>11</release>
-                              <compileSourceRoots>
-                                <compileSourceRoot>${project.basedir}/src/main/java11</compileSourceRoot>
-                              </compileSourceRoots>
-                              <multiReleaseOutput>true</multiReleaseOutput>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <configuration>
-                        <archive>
-                            <manifestEntries>
-                                <Multi-Release>true</Multi-Release>
-                            </manifestEntries>
-                        </archive>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </build>
-    </profile>
-
-    <!--                 -->
-    <!-- Java 12 support -->
-    <!--                 -->
-
-    <!-- This profile is activated when the baseline JDK version running tests is Java 12 -->
-    <profile>
-        <id>java12-test-classpath</id>
-        <activation>
-            <jdk>[12,13)</jdk>
-        </activation>
-        <build>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>default-test</id>
-                            <configuration>
-                                <classesDirectory>${project.build.outputDirectory}/META-INF/versions/12</classesDirectory>
-                                <additionalClasspathElements>
-                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/11</additionalClasspathElement>
-                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/10</additionalClasspathElement>
-                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/9</additionalClasspathElement>
-                                    <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
-                                </additionalClasspathElements>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </build>
-    </profile>
-
-    <!-- This profile is activated when Java 12 or later is used to test a project that supports Java 11 -->
-    <profile>
-        <id>java11-test</id>
-        <activation>
-            <jdk>[12,)</jdk>
-            <property>
-                <name>java11.home</name>
-            </property>
-            <file>
-                <exists>${basedir}/build-test-java11</exists>
-            </file>
-        </activation>
-        <build>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>java11-test</id>
-                            <phase>test</phase>
-                            <goals>
-                                <goal>test</goal>
-                            </goals>
-                            <configuration>
-                                <jvm>${java11.home}/bin/java</jvm>
-                                <classesDirectory>${project.build.outputDirectory}/META-INF/versions/11</classesDirectory>
-                                <additionalClasspathElements>
-                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/10</additionalClasspathElement>
-                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/9</additionalClasspathElement>
-                                    <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
-                                </additionalClasspathElements>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </build>
-    </profile>
-
-    <!-- This profile is activated when Java 12 or later is used to build -->
-    <profile>
-        <id>java12-mr-build</id>
-        <activation>
-            <jdk>[12,)</jdk>
-            <file>
-                <exists>${basedir}/src/main/java12</exists>
-            </file>
-        </activation>
-        <build>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>compile-java12</id>
-                            <phase>compile</phase>
-                            <goals>
-                                <goal>compile</goal>
-                            </goals>
-                            <configuration>
-                                <release>12</release>
-                              <compileSourceRoots>
-                                <compileSourceRoot>${project.basedir}/src/main/java12</compileSourceRoot>
-                              </compileSourceRoots>
-                              <multiReleaseOutput>true</multiReleaseOutput>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <configuration>
-                        <archive>
-                            <manifestEntries>
-                                <Multi-Release>true</Multi-Release>
-                            </manifestEntries>
-                        </archive>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </build>
-    </profile>
-
-    <!--                 -->
-    <!-- Java 13 support -->
-    <!--                 -->
-
-    <!-- This profile is activated when the baseline JDK version running tests is Java 13 -->
-    <profile>
-        <id>java13-test-classpath</id>
-        <activation>
-            <jdk>[13,14)</jdk>
-        </activation>
-        <build>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>default-test</id>
-                            <configuration>
-                                <classesDirectory>${project.build.outputDirectory}/META-INF/versions/13</classesDirectory>
-                                <additionalClasspathElements>
-                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/12</additionalClasspathElement>
-                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/11</additionalClasspathElement>
-                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/10</additionalClasspathElement>
-                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/9</additionalClasspathElement>
-                                    <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
-                                </additionalClasspathElements>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </build>
-    </profile>
-
-    <!-- This profile is activated when Java 13 or later is used to test a project that supports Java 12 -->
-    <profile>
-        <id>java12-test</id>
-        <activation>
-            <jdk>[13,)</jdk>
-            <property>
-                <name>java12.home</name>
-            </property>
-            <file>
-                <exists>${basedir}/build-test-java12</exists>
-            </file>
-        </activation>
-        <build>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>java12-test</id>
-                            <phase>test</phase>
-                            <goals>
-                                <goal>test</goal>
-                            </goals>
-                            <configuration>
-                                <jvm>${java12.home}/bin/java</jvm>
-                                <classesDirectory>${project.build.outputDirectory}/META-INF/versions/12</classesDirectory>
-                                <additionalClasspathElements>
-                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/11</additionalClasspathElement>
-                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/10</additionalClasspathElement>
-                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/9</additionalClasspathElement>
-                                    <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
-                                </additionalClasspathElements>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </build>
-    </profile>
-
-    <!-- This profile is activated when Java 13 or later is used to build -->
-    <profile>
-        <id>java13-mr-build</id>
-        <activation>
-            <jdk>[13,)</jdk>
-            <file>
-                <exists>${basedir}/src/main/java13</exists>
-            </file>
-        </activation>
-        <build>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>compile-java13</id>
-                            <phase>compile</phase>
-                            <goals>
-                                <goal>compile</goal>
-                            </goals>
-                            <configuration>
-                                <release>13</release>
-                              <compileSourceRoots>
-                                <compileSourceRoot>${project.basedir}/src/main/java13</compileSourceRoot>
-                              </compileSourceRoots>
-                              <multiReleaseOutput>true</multiReleaseOutput>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <configuration>
-                        <archive>
-                            <manifestEntries>
-                                <Multi-Release>true</Multi-Release>
-                            </manifestEntries>
-                        </archive>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </build>
-    </profile>
-
-    <!--                 -->
-    <!-- Java 14 support -->
-    <!--                 -->
-
-    <!-- This profile is activated when the baseline JDK version running tests is Java 14 -->
-    <profile>
-        <id>java14-test-classpath</id>
-        <activation>
-            <jdk>[14,15)</jdk>
-        </activation>
-        <build>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>default-test</id>
-                            <configuration>
-                                <classesDirectory>${project.build.outputDirectory}/META-INF/versions/14</classesDirectory>
-                                <additionalClasspathElements>
-                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/13</additionalClasspathElement>
-                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/12</additionalClasspathElement>
-                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/11</additionalClasspathElement>
-                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/10</additionalClasspathElement>
-                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/9</additionalClasspathElement>
-                                    <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
-                                </additionalClasspathElements>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </build>
-    </profile>
-
-    <!-- This profile is activated when Java 14 or later is used to test a project that supports Java 13 -->
-    <profile>
-        <id>java13-test</id>
-        <activation>
-            <jdk>[14,)</jdk>
-            <property>
-                <name>java13.home</name>
-            </property>
-            <file>
-                <exists>${basedir}/build-test-java13</exists>
-            </file>
-        </activation>
-        <build>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>java13-test</id>
-                            <phase>test</phase>
-                            <goals>
-                                <goal>test</goal>
-                            </goals>
-                            <configuration>
-                                <jvm>${java13.home}/bin/java</jvm>
-                                <classesDirectory>${project.build.outputDirectory}/META-INF/versions/13</classesDirectory>
-                                <additionalClasspathElements>
-                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/12</additionalClasspathElement>
-                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/11</additionalClasspathElement>
-                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/10</additionalClasspathElement>
-                                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/9</additionalClasspathElement>
-                                    <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
-                                </additionalClasspathElements>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </build>
-    </profile>
-
-    <!-- This profile is activated when Java 14 or later is used to build -->
-    <profile>
-        <id>java14-mr-build</id>
-        <activation>
-            <jdk>[14,)</jdk>
-            <file>
-                <exists>${basedir}/src/main/java14</exists>
-            </file>
-        </activation>
-        <build>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>compile-java14</id>
-                            <phase>compile</phase>
-                            <goals>
-                                <goal>compile</goal>
-                            </goals>
-                            <configuration>
-                                <release>14</release>
-                              <compileSourceRoots>
-                                <compileSourceRoot>${project.basedir}/src/main/java14</compileSourceRoot>
-                              </compileSourceRoots>
-                              <multiReleaseOutput>true</multiReleaseOutput>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <configuration>
-                        <archive>
-                            <manifestEntries>
-                                <Multi-Release>true</Multi-Release>
-                            </manifestEntries>
-                        </archive>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </build>
-    </profile>
-
-    <!--                 -->
-    <!-- Java 15 support -->
-    <!--                 -->
-
-    <!-- This profile is activated when the baseline JDK version running tests is Java 15 -->
-    <profile>
-      <id>java15-test-classpath</id>
+      <id>java17-test-classpath</id>
       <activation>
-        <jdk>[15,16)</jdk>
+        <jdk>[17,18)</jdk>
       </activation>
       <build>
         <plugins>
@@ -1231,14 +484,8 @@
               <execution>
                 <id>default-test</id>
                 <configuration>
-                  <classesDirectory>${project.build.outputDirectory}/META-INF/versions/15</classesDirectory>
+                  <classesDirectory>${project.build.outputDirectory}/META-INF/versions/17</classesDirectory>
                   <additionalClasspathElements>
-                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/14</additionalClasspathElement>
-                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/13</additionalClasspathElement>
-                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/12</additionalClasspathElement>
-                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/11</additionalClasspathElement>
-                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/10</additionalClasspathElement>
-                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/9</additionalClasspathElement>
                     <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
                   </additionalClasspathElements>
                 </configuration>
@@ -1249,16 +496,16 @@
       </build>
     </profile>
 
-    <!-- This profile is activated when Java 15 or later is used to test a project that supports Java 14-->
+    <!-- This profile is activated when Java 17 or later is used to test a project that supports Java 11-->
     <profile>
-      <id>java14-test</id>
+      <id>java11-test</id>
       <activation>
-        <jdk>[15,)</jdk>
+        <jdk>[17,)</jdk>
         <property>
-          <name>java14.home</name>
+          <name>java11.home</name>
         </property>
         <file>
-          <exists>${basedir}/build-test-java14</exists>
+          <exists>${basedir}/build-test-java11</exists>
         </file>
       </activation>
       <build>
@@ -1268,20 +515,15 @@
             <artifactId>maven-surefire-plugin</artifactId>
             <executions>
               <execution>
-                <id>java14-test</id>
+                <id>java11-test</id>
                 <phase>test</phase>
                 <goals>
                   <goal>test</goal>
                 </goals>
                 <configuration>
-                  <jvm>${java14.home}/bin/java</jvm>
-                  <classesDirectory>${project.build.outputDirectory}/META-INF/versions/14</classesDirectory>
+                  <jvm>${java11.home}/bin/java</jvm>
+                  <classesDirectory>${project.build.outputDirectory}/META-INF/versions/11</classesDirectory>
                   <additionalClasspathElements>
-                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/13</additionalClasspathElement>
-                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/12</additionalClasspathElement>
-                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/11</additionalClasspathElement>
-                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/10</additionalClasspathElement>
-                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/9</additionalClasspathElement>
                     <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
                   </additionalClasspathElements>
                 </configuration>
@@ -1292,13 +534,13 @@
       </build>
     </profile>
 
-    <!-- This profile is activated when Java 15 or later is used to build -->
+    <!-- This profile is activated when Java 17 or later is used to build -->
     <profile>
-      <id>java15-mr-build</id>
+      <id>java17-mr-build</id>
       <activation>
-        <jdk>[15,)</jdk>
+        <jdk>[17,)</jdk>
         <file>
-          <exists>${basedir}/src/main/java15</exists>
+          <exists>${basedir}/src/main/java17</exists>
         </file>
       </activation>
       <build>
@@ -1308,15 +550,15 @@
             <artifactId>maven-compiler-plugin</artifactId>
             <executions>
               <execution>
-                <id>compile-java15</id>
+                <id>compile-java17</id>
                 <phase>compile</phase>
                 <goals>
                   <goal>compile</goal>
                 </goals>
                 <configuration>
-                  <release>15</release>
+                  <release>17</release>
                   <compileSourceRoots>
-                    <compileSourceRoot>${project.basedir}/src/main/java15</compileSourceRoot>
+                    <compileSourceRoot>${project.basedir}/src/main/java17</compileSourceRoot>
                   </compileSourceRoots>
                   <multiReleaseOutput>true</multiReleaseOutput>
                 </configuration>
@@ -1337,261 +579,237 @@
       </build>
     </profile>
 
-      <!--                 -->
-      <!-- Java 16 support -->
-      <!--                 -->
+    <!--                 -->
+    <!-- Java 18 support -->
+    <!--                 -->
 
-      <!-- This profile is activated when the baseline JDK version running tests is Java 16 -->
-      <profile>
-          <id>java16-test-classpath</id>
-          <activation>
-              <jdk>[16,17)</jdk>
-          </activation>
-          <build>
-              <plugins>
-                  <plugin>
-                      <groupId>org.apache.maven.plugins</groupId>
-                      <artifactId>maven-surefire-plugin</artifactId>
-                      <executions>
-                          <execution>
-                              <id>default-test</id>
-                              <configuration>
-                                  <classesDirectory>${project.build.outputDirectory}/META-INF/versions/16</classesDirectory>
-                                  <additionalClasspathElements>
-                                      <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/15</additionalClasspathElement>
-                                      <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/14</additionalClasspathElement>
-                                      <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/13</additionalClasspathElement>
-                                      <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/12</additionalClasspathElement>
-                                      <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/11</additionalClasspathElement>
-                                      <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/10</additionalClasspathElement>
-                                      <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/9</additionalClasspathElement>
-                                      <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
-                                  </additionalClasspathElements>
-                              </configuration>
-                          </execution>
-                      </executions>
-                  </plugin>
-              </plugins>
-          </build>
-      </profile>
+    <!-- This profile is activated when the baseline JDK version running tests is Java 18 -->
+    <profile>
+      <id>java18-test-classpath</id>
+      <activation>
+        <jdk>[18,19)</jdk>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>default-test</id>
+                <configuration>
+                  <classesDirectory>${project.build.outputDirectory}/META-INF/versions/18</classesDirectory>
+                  <additionalClasspathElements>
+                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/17</additionalClasspathElement>
+                    <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
+                  </additionalClasspathElements>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
 
-      <!-- This profile is activated when Java 16 or later is used to test a project that supports Java 14-->
-      <profile>
-          <id>java15-test</id>
-          <activation>
-              <jdk>[16,)</jdk>
-              <property>
-                  <name>java15.home</name>
-              </property>
-              <file>
-                  <exists>${basedir}/build-test-java15</exists>
-              </file>
-          </activation>
-          <build>
-              <plugins>
-                  <plugin>
-                      <groupId>org.apache.maven.plugins</groupId>
-                      <artifactId>maven-surefire-plugin</artifactId>
-                      <executions>
-                          <execution>
-                              <id>java15-test</id>
-                              <phase>test</phase>
-                              <goals>
-                                  <goal>test</goal>
-                              </goals>
-                              <configuration>
-                                  <jvm>${java15.home}/bin/java</jvm>
-                                  <classesDirectory>${project.build.outputDirectory}/META-INF/versions/15</classesDirectory>
-                                  <additionalClasspathElements>
-                                      <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/14</additionalClasspathElement>
-                                      <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/13</additionalClasspathElement>
-                                      <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/12</additionalClasspathElement>
-                                      <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/11</additionalClasspathElement>
-                                      <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/10</additionalClasspathElement>
-                                      <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/9</additionalClasspathElement>
-                                      <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
-                                  </additionalClasspathElements>
-                              </configuration>
-                          </execution>
-                      </executions>
-                  </plugin>
-              </plugins>
-          </build>
-      </profile>
+    <!-- This profile is activated when Java 18 or later is used to test a project that supports Java 17-->
+    <profile>
+      <id>java17-test</id>
+      <activation>
+        <jdk>[18,)</jdk>
+        <property>
+          <name>java17.home</name>
+        </property>
+        <file>
+          <exists>${basedir}/build-test-java17</exists>
+        </file>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>java17-test</id>
+                <phase>test</phase>
+                <goals>
+                  <goal>test</goal>
+                </goals>
+                <configuration>
+                  <jvm>${java17.home}/bin/java</jvm>
+                  <classesDirectory>${project.build.outputDirectory}/META-INF/versions/17</classesDirectory>
+                  <additionalClasspathElements>
+                    <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
+                  </additionalClasspathElements>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
 
-      <!-- This profile is activated when Java 16 or later is used to build -->
-      <profile>
-          <id>java16-mr-build</id>
-          <activation>
-              <jdk>[16,)</jdk>
-              <file>
-                  <exists>${basedir}/src/main/java16</exists>
-              </file>
-          </activation>
-          <build>
-              <plugins>
-                  <plugin>
-                      <groupId>org.apache.maven.plugins</groupId>
-                      <artifactId>maven-compiler-plugin</artifactId>
-                      <executions>
-                          <execution>
-                              <id>compile-java16</id>
-                              <phase>compile</phase>
-                              <goals>
-                                  <goal>compile</goal>
-                              </goals>
-                              <configuration>
-                                  <release>16</release>
-                                  <compileSourceRoots>
-                                      <compileSourceRoot>${project.basedir}/src/main/java16</compileSourceRoot>
-                                  </compileSourceRoots>
-                                  <multiReleaseOutput>true</multiReleaseOutput>
-                              </configuration>
-                          </execution>
-                      </executions>
-                  </plugin>
-                  <plugin>
-                      <artifactId>maven-jar-plugin</artifactId>
-                      <configuration>
-                          <archive>
-                              <manifestEntries>
-                                  <Multi-Release>true</Multi-Release>
-                              </manifestEntries>
-                          </archive>
-                      </configuration>
-                  </plugin>
-              </plugins>
-          </build>
-      </profile>
+    <!-- This profile is activated when Java 18 or later is used to build -->
+    <profile>
+      <id>java18-mr-build</id>
+      <activation>
+        <jdk>[18,)</jdk>
+        <file>
+          <exists>${basedir}/src/main/java18</exists>
+        </file>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>compile-java18</id>
+                <phase>compile</phase>
+                <goals>
+                  <goal>compile</goal>
+                </goals>
+                <configuration>
+                  <release>18</release>
+                  <compileSourceRoots>
+                    <compileSourceRoot>${project.basedir}/src/main/java18</compileSourceRoot>
+                  </compileSourceRoots>
+                  <multiReleaseOutput>true</multiReleaseOutput>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <artifactId>maven-jar-plugin</artifactId>
+            <configuration>
+              <archive>
+                <manifestEntries>
+                  <Multi-Release>true</Multi-Release>
+                </manifestEntries>
+              </archive>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
 
-      <!--                 -->
-      <!-- Java 17 support -->
-      <!--                 -->
+    <!--                 -->
+    <!-- Java 19 support -->
+    <!--                 -->
 
-      <!-- This profile is activated when the baseline JDK version running tests is Java 17 -->
-      <profile>
-          <id>java17-test-classpath</id>
-          <activation>
-              <jdk>[17,18)</jdk>
-          </activation>
-          <build>
-              <plugins>
-                  <plugin>
-                      <groupId>org.apache.maven.plugins</groupId>
-                      <artifactId>maven-surefire-plugin</artifactId>
-                      <executions>
-                          <execution>
-                              <id>default-test</id>
-                              <configuration>
-                                  <classesDirectory>${project.build.outputDirectory}/META-INF/versions/17</classesDirectory>
-                                  <additionalClasspathElements>
-                                      <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/16</additionalClasspathElement>
-                                      <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/15</additionalClasspathElement>
-                                      <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/14</additionalClasspathElement>
-                                      <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/13</additionalClasspathElement>
-                                      <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/12</additionalClasspathElement>
-                                      <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/11</additionalClasspathElement>
-                                      <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/10</additionalClasspathElement>
-                                      <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/9</additionalClasspathElement>
-                                      <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
-                                  </additionalClasspathElements>
-                              </configuration>
-                          </execution>
-                      </executions>
-                  </plugin>
-              </plugins>
-          </build>
-      </profile>
+    <!-- This profile is activated when the baseline JDK version running tests is Java 19 -->
+    <profile>
+      <id>java19-test-classpath</id>
+      <activation>
+        <jdk>[19,20)</jdk>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>default-test</id>
+                <configuration>
+                  <classesDirectory>${project.build.outputDirectory}/META-INF/versions/19</classesDirectory>
+                  <additionalClasspathElements>
+                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/18</additionalClasspathElement>
+                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/17</additionalClasspathElement>
+                    <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
+                  </additionalClasspathElements>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
 
-      <!-- This profile is activated when Java 17 or later is used to test a project that supports Java 14-->
-      <profile>
-          <id>java16-test</id>
-          <activation>
-              <jdk>[17,)</jdk>
-              <property>
-                  <name>java16.home</name>
-              </property>
-              <file>
-                  <exists>${basedir}/build-test-java16</exists>
-              </file>
-          </activation>
-          <build>
-              <plugins>
-                  <plugin>
-                      <groupId>org.apache.maven.plugins</groupId>
-                      <artifactId>maven-surefire-plugin</artifactId>
-                      <executions>
-                          <execution>
-                              <id>java16-test</id>
-                              <phase>test</phase>
-                              <goals>
-                                  <goal>test</goal>
-                              </goals>
-                              <configuration>
-                                  <jvm>${java16.home}/bin/java</jvm>
-                                  <classesDirectory>${project.build.outputDirectory}/META-INF/versions/16</classesDirectory>
-                                  <additionalClasspathElements>
-                                      <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/15</additionalClasspathElement>
-                                      <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/14</additionalClasspathElement>
-                                      <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/13</additionalClasspathElement>
-                                      <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/12</additionalClasspathElement>
-                                      <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/11</additionalClasspathElement>
-                                      <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/10</additionalClasspathElement>
-                                      <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/9</additionalClasspathElement>
-                                      <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
-                                  </additionalClasspathElements>
-                              </configuration>
-                          </execution>
-                      </executions>
-                  </plugin>
-              </plugins>
-          </build>
-      </profile>
+    <!-- This profile is activated when Java 19 or later is used to test a project that supports Java 18-->
+    <profile>
+      <id>java18-test</id>
+      <activation>
+        <jdk>[19,)</jdk>
+        <property>
+          <name>java18.home</name>
+        </property>
+        <file>
+          <exists>${basedir}/build-test-java18</exists>
+        </file>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>java18-test</id>
+                <phase>test</phase>
+                <goals>
+                  <goal>test</goal>
+                </goals>
+                <configuration>
+                  <jvm>${java18.home}/bin/java</jvm>
+                  <classesDirectory>${project.build.outputDirectory}/META-INF/versions/18</classesDirectory>
+                  <additionalClasspathElements>
+                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/17</additionalClasspathElement>
+                    <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
+                  </additionalClasspathElements>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
 
-      <!-- This profile is activated when Java 17 or later is used to build -->
-      <profile>
-          <id>java17-mr-build</id>
-          <activation>
-              <jdk>[17,)</jdk>
-              <file>
-                  <exists>${basedir}/src/main/java17</exists>
-              </file>
-          </activation>
-          <build>
-              <plugins>
-                  <plugin>
-                      <groupId>org.apache.maven.plugins</groupId>
-                      <artifactId>maven-compiler-plugin</artifactId>
-                      <executions>
-                          <execution>
-                              <id>compile-java17</id>
-                              <phase>compile</phase>
-                              <goals>
-                                  <goal>compile</goal>
-                              </goals>
-                              <configuration>
-                                  <release>17</release>
-                                  <compileSourceRoots>
-                                      <compileSourceRoot>${project.basedir}/src/main/java17</compileSourceRoot>
-                                  </compileSourceRoots>
-                                  <multiReleaseOutput>true</multiReleaseOutput>
-                              </configuration>
-                          </execution>
-                      </executions>
-                  </plugin>
-                  <plugin>
-                      <artifactId>maven-jar-plugin</artifactId>
-                      <configuration>
-                          <archive>
-                              <manifestEntries>
-                                  <Multi-Release>true</Multi-Release>
-                              </manifestEntries>
-                          </archive>
-                      </configuration>
-                  </plugin>
-              </plugins>
-          </build>
-      </profile>
-      <!-- MR JAR support ends here-->
+    <!-- This profile is activated when Java 18 or later is used to build -->
+    <profile>
+      <id>java19-mr-build</id>
+      <activation>
+        <jdk>[19,)</jdk>
+        <file>
+          <exists>${basedir}/src/main/java19</exists>
+        </file>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>compile-java19</id>
+                <phase>compile</phase>
+                <goals>
+                  <goal>compile</goal>
+                </goals>
+                <configuration>
+                  <release>19</release>
+                  <compileSourceRoots>
+                    <compileSourceRoot>${project.basedir}/src/main/java19</compileSourceRoot>
+                  </compileSourceRoots>
+                  <multiReleaseOutput>true</multiReleaseOutput>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <artifactId>maven-jar-plugin</artifactId>
+            <configuration>
+              <archive>
+                <manifestEntries>
+                  <Multi-Release>true</Multi-Release>
+                </manifestEntries>
+              </archive>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <!-- MR JAR support ends here-->
   </profiles>
 </project>

@@ -20,42 +20,30 @@ The multi-release JAR support works in two parts: compilation and testing.
 [id='mr-jar-compilation']
 ==== Compilation
 
-Compilation works by providing extra executions of the compiler plugin in order to build the additional JAR layers.  The
+Compilation works by providing extra executions of the compiler plugin in order to build the additional JAR layers. The
 base layer is built by the standard `default-compile` execution.  After that, Maven profiles are activated based on the
-presence of extra layer source directories (e.g. `src/main/java9`, `src/main/java10` etc.).  These profiles contain
+presence of extra layer source directories (e.g. `src/main/java18`, `src/main/java19` etc.).  These profiles contain
 additional executions of the compiler plugin which compile the sources in the layer directory, while putting the output
 of the previous step on the class path.
 
-Each present layer is in turn compiled with the results of all the previous layers on the classpath in the correct order.
-The additional layer class files are output under the `target/classes` directory in the appropriate location for
+Each present layer is in turn compiled with the results of all the previous layers on the classpath in the correct
+order. The additional layer class files are output under the `target/classes` directory in the appropriate location for
 multi-release JAR layers.
 
 In order to select the correct class files for the given Java version, the `<release>` property is used.
 This prevents accidental usage of APIs which are only present in later versions than the one
-being compiled. However there is a limitation to this strategy: Java 9 and later do not provide runtime information
-for non-standard Java 8 classes such as `sun.misc.Unsafe`.  If your project needs to compile against these classes,
-you must use the dependency plugin as described <<mr-jar-sun-misc,below>>.
-
-Note that by default, building Java 8 sources does not use the `<release>` property.  To enable this feature,
-create a file (which may be empty) in your project root named `build-release-8`.
+being compiled.
 
 [id='mr-jar-testing']
 ==== Testing
 
-Testing using `maven-surefire-plugin` is supported by running the project unit tests on
-every supported Java version.  In order to do so, it is expected that the following system
-property or properties are set as needed:
+Testing using `maven-surefire-plugin` is supported by running the project unit tests on every supported Java version.
+In order to do so, it is expected that the following system property or properties are set as needed:
 
-* `java8.home`: this property must be set to the location of a Java 8 JDK installation
-* `java9.home`: this property must be set to the location of a Java 9 JDK installation
-* `java10.home`: this property must be set to the location of a Java 10 JDK installation
 * `java11.home`: this property must be set to the location of a Java 11 JDK installation
-* `java12.home`: this property must be set to the location of a Java 12 JDK installation
-* `java13.home`: this property must be set to the location of a Java 13 JDK installation
-* `java14.home`: this property must be set to the location of a Java 14 JDK installation
-* `java15.home`: this property must be set to the location of a Java 15 JDK installation
-* `java16.home`: this property must be set to the location of a Java 16 JDK installation
 * `java17.home`: this property must be set to the location of a Java 17 JDK installation
+* `java18.home`: this property must be set to the location of a Java 18 JDK installation
+* `java19.home`: this property must be set to the location of a Java 19 JDK installation
 
 In order to simplify development, it is recommended to project maintainers to set these
 properties in your personal Maven `settings.xml` file.
@@ -73,7 +61,7 @@ To configure a multi-release JAR, you need the following pieces of information:
 [id='mr-jar-base-layer']
 ==== Step 1: Base layer version
 
-Choose your base layer version.  This can be Java 8 or anything later.  Configure the version by configuring the
+Choose your base layer version.  This can be Java 11 or anything later.  Configure the version by configuring the
 `release` property in the `default-compile` execution of `maven-compiler-plugin`:
 
 [source,xml]
@@ -84,17 +72,14 @@ Choose your base layer version.  This can be Java 8 or anything later.  Configur
     <execution>
       <id>default-compile</id>
       <configuration>
-        <release>8</release>
+        <release>11</release>
       </configuration>
     </execution>
   </executions>
 </plugin>
 ----
 
-If the `build-release-8` property is present in the root of your project, then this step is automatically done for you.
-
-Note that a single-layer Java 8 build does not support the `release` element because the
-corresponding `javac` option is only present in JDK 9 and later.
+If the `build-release-11` property is present in the root of your project, then this step is automatically done for you.
 
 [id='mr-jar-highest-layer']
 ==== Step 2: Highest layer version
@@ -113,33 +98,19 @@ able to compile every version of Java sources from oldest to newest.
 The sources for your base layer continue to reside in `src/main/java` and `src/test/java`.
 
 Additional layers are in directories whose names correspond to the version of Java that
-is targeted by that directory.  For example, sources which are specific to Java 9 and later
-would be in `src/main/java9`, whereas sources which are specific to Java 11 and later would
-be in `src/main/java11`.
+is targeted by that directory. For example, sources which are specific to Java 18 and later
+would be in `src/main/java18`, whereas sources which are specific to Java 19 and later would
+be in `src/main/java19`.
 
 If you have a class that needs an alternative version for a given Java version, you only
 need to provide the replacement source file in the directory corresponding to the _oldest_
-version that supports the alternative source.  It is not necessary to copy identical classes into
+version that supports the alternative source. It is not necessary to copy identical classes into
 more than one layer; doing so will increase the size of the resultant artifact needlessly.
 
-There are restrictions on these directories.  You may only provide sources that correspond
+There are restrictions on these directories. You may only provide sources that correspond
 to sources that exist in the base layer - that is, it is a violation of the MR JAR specification to provide
-sources that introduce new APIs only in later Java versions.  The JDK does enforce this at run time.
+sources that introduce new APIs only in later Java versions. The JDK does enforce this at run time.
 In addition, providing additional public members in later versions is generally not recommended.
-
-[id='mr-jar-sun-misc']
-=== Missing JDK APIs
-
-If your project relies on APIs which are not in the Java SE specification (for example,
-classes such as `sun.misc` which are present in the `jdk.unsupported` module in Java 9 and
-later), and your base layer targets Java 8, you must take an additional step.
-
-Since these APIs are not included in the class database that `javac` uses to compile (even
-though they are present at run time), stubs of the extra classes must be included but only during
-compilation.
-
-To automatically perform this step, create a file in your project root named `build-include-jdk-misc`.
-The contents of this file do not matter; it can be empty or it can contain text referring to this document.
 
 [id='mr-jar-gh-actions']
 === Using MR JAR functions with GitHub Actions
@@ -150,7 +121,7 @@ version(s) by way of a setup action, and then passing the location of each addit
 At the time of this writing, the commonly-used `actions/setup-java` does not provide useful environment variables
 for multiple JDK installs, so it is recommended to instead use the `AdoptOpenJDK/install-jdk` action instead.
 
-As an example, for a project that is built on Java 11 but must also be tested against JDK 8, 9, and 10, your `build.yml`
+As an example, for a project that is built on Java 17 but must also be tested against JDK 11 your `build.yml`
 might look something like this:
 
 [source,yaml]
@@ -165,33 +136,21 @@ jobs:
         name: Checkout
 
       - uses: AdoptOpenJDK/install-jdk@v1
+        name: Set up JDK 17
+        with:
+          version: 17
+
+      - uses: AdoptOpenJDK/install-jdk@v1
         name: Set up JDK 11
         with:
           version: 11
-
-      - uses: AdoptOpenJDK/install-jdk@v1
-        name: Set up JDK 10
-        with:
-          version: 10
-          targets: 'JAVA_HOME_10'
-
-      - uses: AdoptOpenJDK/install-jdk@v1
-        name: Set up JDK 9
-        with:
-          version: 9
-          targets: 'JAVA_HOME_9'
-
-      - uses: AdoptOpenJDK/install-jdk@v1
-        name: Set up JDK 8
-        with:
-          version: 8
-          targets: 'JAVA_HOME_8'
+          targets: 'JAVA_HOME_11'
 
       - name: Build
-        run: mvn -B verify --file pom.xml -Djava8.home=$JAVA_HOME_8 -Djava9.home=$JAVA_HOME_9 -Djava10.home=$JAVA_HOME_10
+        run: mvn -B verify --file pom.xml -Djava11.home=$JAVA_HOME_11
 ----
 
-Note that this configuration causes the default `JAVA_HOME` environment to be set to JDK 11.
+Note that this configuration causes the default `JAVA_HOME` environment to be set to JDK 17.
 
 [id='build-control-files']
 == Build control files reference
@@ -199,17 +158,10 @@ Note that this configuration causes the default `JAVA_HOME` environment to be se
 [cols="1m,2,1",options="header"]
 |===
 |File name|Purpose|Reference
-|build-release-8|Use the `<release>` option to set Java 8 for the base layer.|<<mr-jar-base-layer>>
-|build-include-jdk-misc|Include the `jdk-misc` dependency for Java 8 builds.|<<mr-jar-sun-misc>>
-|build-test-java8|Run tests for Java 8 when `java8.home` is set and JDK 9 or later is used.|<<mr-jar-testing>>
-|build-test-java9|Run tests for Java 9 when `java9.home` is set and JDK 10 or later is used.|<<mr-jar-testing>>
-|build-test-java10|Run tests for Java 10 when `java10.home` is set and JDK 11 or later is used.|<<mr-jar-testing>>
-|build-test-java11|Run tests for Java 11 when `java11.home` is set and JDK 12 or later is used.|<<mr-jar-testing>>
-|build-test-java12|Run tests for Java 12 when `java12.home` is set and JDK 13 or later is used.|<<mr-jar-testing>>
-|build-test-java13|Run tests for Java 13 when `java13.home` is set and JDK 14 or later is used.|<<mr-jar-testing>>
-|build-test-java14|Run tests for Java 14 when `java14.home` is set and JDK 15 or later is used.|<<mr-jar-testing>>
-|build-test-java15|Run tests for Java 15 when `java15.home` is set and JDK 16 or later is used.|<<mr-jar-testing>>
-|build-test-java16|Run tests for Java 16 when `java16.home` is set and JDK 17 or later is used.|<<mr-jar-testing>>
+|build-release-11|Use the `<release>` option to set Java 11 for the base layer.|<<mr-jar-base-layer>>
+|build-test-java11|Run tests for Java 11 when `java11.home` is set and JDK 17 or later is used.|<<mr-jar-testing>>
 |build-test-java17|Run tests for Java 17 when `java17.home` is set and JDK 18 or later is used.|<<mr-jar-testing>>
+|build-test-java18|Run tests for Java 18 when `java18.home` is set and JDK 19 or later is used.|<<mr-jar-testing>>
+|build-test-java19|Run tests for Java 19 when `java19.home` is set and JDK 20 or later is used.|<<mr-jar-testing>>
 |===
 
