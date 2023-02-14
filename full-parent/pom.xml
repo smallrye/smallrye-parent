@@ -19,13 +19,13 @@
         <version.jakarta.api>10.0.0</version.jakarta.api>
         <version.jakarta.annotation.api>2.1.1</version.jakarta.annotation.api>
         <version.jakarta.enterprise.cdi.api>4.0.1</version.jakarta.enterprise.cdi.api>
-        <version.jakarta.json-p.api>2.1.0</version.jakarta.json-p.api>
+        <version.jakarta.json-p.api>2.1.1</version.jakarta.json-p.api>
         <version.jakarta.json-b.api>3.0.0</version.jakarta.json-b.api>
         <version.jakarta.ws.rs.api>3.1.0</version.jakarta.ws.rs.api>
 
         <version.org.jboss.logging>3.5.0.Final</version.org.jboss.logging>
         <version.org.jboss.logging-processor>2.2.1.Final</version.org.jboss.logging-processor>
-        <version.org.jboss.jandex>2.4.3.Final</version.org.jboss.jandex>
+        <version.org.jboss.jandex>3.0.5</version.org.jboss.jandex>
 
         <!-- Testing versions -->
         <version.assertj>3.24.2</version.assertj>

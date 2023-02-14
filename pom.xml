@@ -21,20 +21,22 @@
 
   <properties>
     <!-- Plugin versions -->
+    <version.clean.plugin>3.2.0</version.clean.plugin>
     <version.compiler.plugin>3.10.1</version.compiler.plugin>
     <version.gpg.plugin>3.0.1</version.gpg.plugin>
     <version.install.plugin>3.1.0</version.install.plugin>
     <version.jar.plugin>3.3.0</version.jar.plugin>
     <version.javadoc.plugin>3.4.1</version.javadoc.plugin>
     <version.nexus.staging.plugin>1.6.13</version.nexus.staging.plugin>
-    <version.release.plugin>2.5.3</version.release.plugin>
+    <version.release.plugin>3.0.0-M7</version.release.plugin>
+    <version.deploy.plugin>3.1.0</version.deploy.plugin>
     <version.source.plugin>3.2.1</version.source.plugin>
     <version.site.plugin>3.12.1</version.site.plugin>
     <version.surefire.plugin>3.0.0-M9</version.surefire.plugin>
     <version.surefire-report.plugin>3.0.0-M9</version.surefire-report.plugin>
     <version.failsafe.plugin>3.0.0-M9</version.failsafe.plugin>
     <version.smallrye.code.rules.plugin>2</version.smallrye.code.rules.plugin>
-    <version.formatter.plugin>2.16.0</version.formatter.plugin>
+    <version.formatter.plugin>2.22.0</version.formatter.plugin>
     <version.impsort.plugin>1.8.0</version.impsort.plugin>
     <version.jacoco.plugin>0.8.8</version.jacoco.plugin>
     <version.smallrye.plugin>1.0.0</version.smallrye.plugin>
@@ -105,6 +107,11 @@
   <build>
     <pluginManagement>
       <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>${version.clean.plugin}</version>
+        </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
@@ -229,6 +236,11 @@
           <configuration>
             <stagingProgressTimeoutMinutes>15</stagingProgressTimeoutMinutes>
           </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>${version.deploy.plugin}</version>
         </plugin>
         <plugin>
           <groupId>org.jacoco</groupId>
