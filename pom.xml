@@ -35,7 +35,7 @@
     <version.failsafe.plugin>3.0.0-M8</version.failsafe.plugin>
     <version.smallrye.code.rules.plugin>2</version.smallrye.code.rules.plugin>
     <version.formatter.plugin>2.16.0</version.formatter.plugin>
-    <version.impsort.plugin>1.6.2</version.impsort.plugin>
+    <version.impsort.plugin>1.8.0</version.impsort.plugin>
     <version.jacoco.plugin>0.8.8</version.jacoco.plugin>
     <version.smallrye.plugin>1.0.0</version.smallrye.plugin>
     <version.buildnumber.plugin>3.0.0</version.buildnumber.plugin>
