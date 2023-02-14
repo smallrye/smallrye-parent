@@ -30,7 +30,7 @@
     <version.release.plugin>2.5.3</version.release.plugin>
     <version.source.plugin>3.2.1</version.source.plugin>
     <version.site.plugin>3.12.1</version.site.plugin>
-    <version.surefire.plugin>3.0.0-M8</version.surefire.plugin>
+    <version.surefire.plugin>3.0.0-M9</version.surefire.plugin>
     <version.surefire-report.plugin>3.0.0-M8</version.surefire-report.plugin>
     <version.failsafe.plugin>3.0.0-M8</version.failsafe.plugin>
     <version.smallrye.code.rules.plugin>2</version.smallrye.code.rules.plugin>
