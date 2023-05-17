@@ -35,11 +35,9 @@ jobs:
           repository: smallrye/smallrye-config
           path: smallrye-config
 
-#       Needs updates to work properly with Jakarta. The auto migration is not enough.
-#      - name: test with smallrye-config
-#        run: |
-#          cd smallrye-config
-#          mvn -B -ntp versions:update-parent -DallowSnapshots=true
-#          sh to-jakarta.sh
-#          git diff pom.xml
-#          mvn -B -ntp install -Dtck.skip.owb=true
+      - name: test with smallrye-config
+        run: |
+          cd smallrye-config
+          mvn versions:update-parent -DallowSnapshots=true -N
+          git diff pom.xml
+          mvn install
