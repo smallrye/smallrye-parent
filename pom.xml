@@ -42,7 +42,7 @@
     <version.jacoco.plugin>0.8.10</version.jacoco.plugin>
     <version.smallrye.plugin>1.0.0</version.smallrye.plugin>
     <version.buildnumber.plugin>3.1.0</version.buildnumber.plugin>
-    <version.versions.plugin>2.15.0</version.versions.plugin>
+    <version.versions.plugin>2.16.0</version.versions.plugin>
 
     <!-- Cross plugins settings -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
