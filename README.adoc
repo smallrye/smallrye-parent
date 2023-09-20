@@ -44,6 +44,8 @@ In order to do so, it is expected that the following system property or properti
 * `java17.home`: this property must be set to the location of a Java 17 JDK installation
 * `java18.home`: this property must be set to the location of a Java 18 JDK installation
 * `java19.home`: this property must be set to the location of a Java 19 JDK installation
+* `java20.home`: this property must be set to the location of a Java 20 JDK installation
+* `java21.home`: this property must be set to the location of a Java 21 JDK installation
 
 In order to simplify development, it is recommended to project maintainers to set these
 properties in your personal Maven `settings.xml` file.
@@ -163,5 +165,7 @@ Note that this configuration causes the default `JAVA_HOME` environment to be se
 |build-test-java17|Run tests for Java 17 when `java17.home` is set and JDK 18 or later is used.|<<mr-jar-testing>>
 |build-test-java18|Run tests for Java 18 when `java18.home` is set and JDK 19 or later is used.|<<mr-jar-testing>>
 |build-test-java19|Run tests for Java 19 when `java19.home` is set and JDK 20 or later is used.|<<mr-jar-testing>>
+|build-test-java20|Run tests for Java 20 when `java20.home` is set and JDK 21 or later is used.|<<mr-jar-testing>>
+|build-test-java21|Run tests for Java 21 when `java21.home` is set and JDK 22 or later is used.|<<mr-jar-testing>>
 |===
 
