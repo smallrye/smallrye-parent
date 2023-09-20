@@ -825,7 +825,7 @@
     <profile>
       <id>java20-test-classpath</id>
       <activation>
-        <jdk>[20,20)</jdk>
+        <jdk>[20,21)</jdk>
       </activation>
       <build>
         <plugins>
@@ -944,7 +944,7 @@
     <profile>
       <id>java21-test-classpath</id>
       <activation>
-        <jdk>[21,21)</jdk>
+        <jdk>[21,22)</jdk>
       </activation>
       <build>
         <plugins>
