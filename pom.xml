@@ -772,7 +772,7 @@
       </build>
     </profile>
 
-    <!-- This profile is activated when Java 18 or later is used to build -->
+    <!-- This profile is activated when Java 19 or later is used to build -->
     <profile>
       <id>java19-mr-build</id>
       <activation>
@@ -797,6 +797,246 @@
                   <release>19</release>
                   <compileSourceRoots>
                     <compileSourceRoot>${project.basedir}/src/main/java19</compileSourceRoot>
+                  </compileSourceRoots>
+                  <multiReleaseOutput>true</multiReleaseOutput>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <artifactId>maven-jar-plugin</artifactId>
+            <configuration>
+              <archive>
+                <manifestEntries>
+                  <Multi-Release>true</Multi-Release>
+                </manifestEntries>
+              </archive>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!--                 -->
+    <!-- Java 20 support -->
+    <!--                 -->
+
+    <!-- This profile is activated when the baseline JDK version running tests is Java 20 -->
+    <profile>
+      <id>java20-test-classpath</id>
+      <activation>
+        <jdk>[20,20)</jdk>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>default-test</id>
+                <configuration>
+                  <classesDirectory>${project.build.outputDirectory}/META-INF/versions/20</classesDirectory>
+                  <additionalClasspathElements>
+                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/19</additionalClasspathElement>
+                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/18</additionalClasspathElement>
+                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/17</additionalClasspathElement>
+                    <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
+                  </additionalClasspathElements>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- This profile is activated when Java 20 or later is used to test a project that supports Java 19-->
+    <profile>
+      <id>java19-test</id>
+      <activation>
+        <jdk>[20,)</jdk>
+        <property>
+          <name>java19.home</name>
+        </property>
+        <file>
+          <exists>${basedir}/build-test-java19</exists>
+        </file>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>java19-test</id>
+                <phase>test</phase>
+                <goals>
+                  <goal>test</goal>
+                </goals>
+                <configuration>
+                  <jvm>${java19.home}/bin/java</jvm>
+                  <classesDirectory>${project.build.outputDirectory}/META-INF/versions/19</classesDirectory>
+                  <additionalClasspathElements>
+                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/18</additionalClasspathElement>
+                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/17</additionalClasspathElement>
+                    <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
+                  </additionalClasspathElements>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- This profile is activated when Java 20 or later is used to build -->
+    <profile>
+      <id>java20-mr-build</id>
+      <activation>
+        <jdk>[20,)</jdk>
+        <file>
+          <exists>${basedir}/src/main/java20</exists>
+        </file>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>compile-java20</id>
+                <phase>compile</phase>
+                <goals>
+                  <goal>compile</goal>
+                </goals>
+                <configuration>
+                  <release>20</release>
+                  <compileSourceRoots>
+                    <compileSourceRoot>${project.basedir}/src/main/java20</compileSourceRoot>
+                  </compileSourceRoots>
+                  <multiReleaseOutput>true</multiReleaseOutput>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <artifactId>maven-jar-plugin</artifactId>
+            <configuration>
+              <archive>
+                <manifestEntries>
+                  <Multi-Release>true</Multi-Release>
+                </manifestEntries>
+              </archive>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!--                 -->
+    <!-- Java 21 support -->
+    <!--                 -->
+
+    <!-- This profile is activated when the baseline JDK version running tests is Java 21 -->
+    <profile>
+      <id>java21-test-classpath</id>
+      <activation>
+        <jdk>[21,21)</jdk>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>default-test</id>
+                <configuration>
+                  <classesDirectory>${project.build.outputDirectory}/META-INF/versions/21</classesDirectory>
+                  <additionalClasspathElements>
+                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/20</additionalClasspathElement>
+                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/19</additionalClasspathElement>
+                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/18</additionalClasspathElement>
+                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/17</additionalClasspathElement>
+                    <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
+                  </additionalClasspathElements>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- This profile is activated when Java 21 or later is used to test a project that supports Java 20-->
+    <profile>
+      <id>java20-test</id>
+      <activation>
+        <jdk>[21,)</jdk>
+        <property>
+          <name>java20.home</name>
+        </property>
+        <file>
+          <exists>${basedir}/build-test-java20</exists>
+        </file>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>java20-test</id>
+                <phase>test</phase>
+                <goals>
+                  <goal>test</goal>
+                </goals>
+                <configuration>
+                  <jvm>${java20.home}/bin/java</jvm>
+                  <classesDirectory>${project.build.outputDirectory}/META-INF/versions/20</classesDirectory>
+                  <additionalClasspathElements>
+                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/19</additionalClasspathElement>
+                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/18</additionalClasspathElement>
+                    <additionalClasspathElement>${project.build.outputDirectory}/META-INF/versions/17</additionalClasspathElement>
+                    <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
+                  </additionalClasspathElements>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- This profile is activated when Java 21 or later is used to build -->
+    <profile>
+      <id>java21-mr-build</id>
+      <activation>
+        <jdk>[21,)</jdk>
+        <file>
+          <exists>${basedir}/src/main/java21</exists>
+        </file>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>compile-java21</id>
+                <phase>compile</phase>
+                <goals>
+                  <goal>compile</goal>
+                </goals>
+                <configuration>
+                  <release>21</release>
+                  <compileSourceRoots>
+                    <compileSourceRoot>${project.basedir}/src/main/java21</compileSourceRoot>
                   </compileSourceRoots>
                   <multiReleaseOutput>true</multiReleaseOutput>
                 </configuration>
