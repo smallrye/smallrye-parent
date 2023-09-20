@@ -27,6 +27,7 @@ jobs:
         name: set up jdk versions
         with:
           distribution: temurin
+          architecture: x64
           java-version: |
             11
             17
@@ -47,7 +48,7 @@ jobs:
           cd smallrye-config
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
-          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X86}}
+          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}}
 
       - uses: actions/checkout@v2
         name: checkout smallrye-common
@@ -60,4 +61,4 @@ jobs:
           cd smallrye-common
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
-          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X86}}
+          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}}
