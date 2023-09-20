@@ -20,14 +20,21 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         name: checkout
-
-      - uses: AdoptOpenJDK/install-jdk@v1
-        name: set up jdk 11
         with:
-          version: 11
+          path: smallrye-parent
+
+      - uses: actions/setup-java@v3
+        name: set up jdk versions
+        with:
+          distribution: temurin
+          java-version: |
+            11
+            17
 
       - name: Maven
-        run: mvn -B -ntp formatter:validate install
+        run: |
+          cd smallrye-parent
+          mvn -B -ntp formatter:validate install
 
       - uses: actions/checkout@v2
         name: checkout smallrye-config
@@ -38,6 +45,19 @@ jobs:
       - name: test with smallrye-config
         run: |
           cd smallrye-config
-          mvn versions:update-parent -DallowSnapshots=true -N
+          mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
-          mvn install
+          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X86}}
+
+      - uses: actions/checkout@v2
+        name: checkout smallrye-common
+        with:
+          repository: smallrye/smallrye-common
+          path: smallrye-common
+
+      - name: test with smallrye-common
+        run: |
+          cd smallrye-common
+          mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
+          git diff pom.xml
+          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X86}}
