@@ -79,7 +79,7 @@ Choose your base layer version.  This can be Java 11 or anything later.  Configu
 </plugin>
 ----
 
-If the `build-release-11` property is present in the root of your project, then this step is automatically done for you.
+If the `build-release-11` file is present in the root of your project, then this step is automatically done for you.
 
 [id='mr-jar-highest-layer']
 ==== Step 2: Highest layer version
@@ -118,9 +118,6 @@ In addition, providing additional public members in later versions is generally 
 Using this functionality with GitHub Actions is relatively simple.  It entails adding the additional JDK
 version(s) by way of a setup action, and then passing the location of each additional JDK to the build.
 
-At the time of this writing, the commonly-used `actions/setup-java` does not provide useful environment variables
-for multiple JDK installs, so it is recommended to instead use the `AdoptOpenJDK/install-jdk` action instead.
-
 As an example, for a project that is built on Java 17 but must also be tested against JDK 11 your `build.yml`
 might look something like this:
 
@@ -135,25 +132,27 @@ jobs:
       - uses: actions/checkout@v2
         name: Checkout
 
-      - uses: AdoptOpenJDK/install-jdk@v1
-        name: Set up JDK 17
+      - uses: actions/setup-java@v3
+        name: Set up JDKs
         with:
-          version: 17
-
-      - uses: AdoptOpenJDK/install-jdk@v1
-        name: Set up JDK 11
-        with:
-          version: 11
-          targets: 'JAVA_HOME_11'
+          distribution: temurin
+          java-version: |
+            11
+            17
 
       - name: Build
-        run: mvn -B verify --file pom.xml -Djava11.home=$JAVA_HOME_11
+        run: mvn -B verify --file pom.xml -Djava11.home=${{env.JAVA_HOME_11_X64}}
 ----
+
+See also link:https://github.com/actions/setup-java#readme[the README for `actions/setup-java`].
 
 Note that this configuration causes the default `JAVA_HOME` environment to be set to JDK 17.
 
 [id='build-control-files']
 == Build control files reference
+
+These build control files are tested only for their presence.
+They do not need to have any content (i.e. they can be zero-sized).
 
 [cols="1m,2,1",options="header"]
 |===
