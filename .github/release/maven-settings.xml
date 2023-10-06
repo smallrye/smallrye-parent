@@ -1,0 +1,22 @@
+<settings>
+  <servers>
+    <server>
+      <id>ossrh</id>
+      <username>${env.SONATYPE_USERNAME}</username>
+      <password>${env.SONATYPE_PASSWORD}</password>
+    </server>
+  </servers>
+  <profiles>
+    <profile>
+      <id>ossrh</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <gpg.executable>gpg</gpg.executable>
+        <gpg.passphrase>${env.SECRET_PASSPHRASE}</gpg.passphrase>
+        <gpg.keyname>smallrye@googlegroups.com</gpg.keyname>
+      </properties>
+    </profile>
+  </profiles>
+</settings>
