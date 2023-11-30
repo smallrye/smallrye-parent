@@ -62,3 +62,16 @@ jobs:
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
           mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}}
+
+      - uses: actions/checkout@v2
+        name: checkout jandex
+        with:
+          repository: smallrye/jandex
+          path: jandex
+
+      - name: test with jandex
+        run: |
+          cd jandex
+          mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
+          git diff pom.xml
+          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}}
