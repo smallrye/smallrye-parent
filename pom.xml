@@ -461,6 +461,16 @@
                   <release>11</release>
                 </configuration>
               </execution>
+              <execution>
+                <id>default-testCompile</id>
+                <phase>test-compile</phase>
+                <goals>
+                  <goal>compile</goal>
+                </goals>
+                <configuration>
+                  <release>11</release>
+                </configuration>
+              </execution>
             </executions>
           </plugin>
         </plugins>
@@ -491,6 +501,16 @@
                   <release>17</release>
                 </configuration>
               </execution>
+              <execution>
+                <id>default-testCompile</id>
+                <phase>test-compile</phase>
+                <goals>
+                  <goal>compile</goal>
+                </goals>
+                <configuration>
+                  <release>17</release>
+                </configuration>
+              </execution>
             </executions>
           </plugin>
         </plugins>
@@ -514,6 +534,16 @@
               <execution>
                 <id>default-compile</id>
                 <phase>compile</phase>
+                <goals>
+                  <goal>compile</goal>
+                </goals>
+                <configuration>
+                  <release>21</release>
+                </configuration>
+              </execution>
+              <execution>
+                <id>default-testCompile</id>
+                <phase>test-compile</phase>
                 <goals>
                   <goal>compile</goal>
                 </goals>
