@@ -75,3 +75,16 @@ jobs:
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
           mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}}
+
+      - uses: actions/checkout@v4
+        name: checkout smallrye-mutiny
+        with:
+          repository: smallrye/smallrye-mutiny
+          path: smallrye-mutiny
+
+      - name: test with smallrye-mutiny
+        run: |
+          cd smallrye-mutiny
+          mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
+          git diff pom.xml
+          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}}
