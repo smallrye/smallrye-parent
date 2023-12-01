@@ -23,7 +23,7 @@ jobs:
         with:
           path: smallrye-parent
 
-      - uses: actions/setup-java@v3
+      - uses: actions/setup-java@v4
         name: set up jdk versions
         with:
           distribution: temurin
