@@ -1,4 +1,5 @@
 :ci: https://github.com/smallrye/smallrye-parent/actions?query=workflow%3A%22SmallRye+Build%22
+:doctype: book
 
 image:https://github.com/smallrye/smallrye-parent/workflows/SmallRye%20Build/badge.svg?branch=main[link={ci}]
 image:https://img.shields.io/github/license/thorntail/thorntail.svg["License", link="http://www.apache.org/licenses/LICENSE-2.0"]
