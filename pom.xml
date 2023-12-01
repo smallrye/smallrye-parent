@@ -38,7 +38,7 @@
     <version.failsafe.plugin>3.2.2</version.failsafe.plugin>
     <version.smallrye.code.rules.plugin>2</version.smallrye.code.rules.plugin>
     <version.formatter.plugin>2.22.0</version.formatter.plugin>
-    <version.impsort.plugin>1.8.0</version.impsort.plugin>
+    <version.impsort.plugin>1.9.0</version.impsort.plugin>
     <version.jacoco.plugin>0.8.11</version.jacoco.plugin>
     <version.smallrye.plugin>1.0.0</version.smallrye.plugin>
     <version.buildnumber.plugin>3.2.0</version.buildnumber.plugin>
@@ -335,6 +335,7 @@
         </configuration>
         <executions>
           <execution>
+            <id>format-sources</id>
             <phase>process-sources</phase>
             <goals>
               <goal>format</goal>
@@ -463,6 +464,37 @@
               </execution>
             </executions>
           </plugin>
+          <plugin>
+            <groupId>net.revelc.code</groupId>
+            <artifactId>impsort-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>sort-imports</id>
+                <goals>
+                  <goal>sort</goal>
+                </goals>
+                <configuration>
+                  <compliance>11</compliance>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>net.revelc.code.formatter</groupId>
+            <artifactId>formatter-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>format-sources</id>
+                <phase>process-sources</phase>
+                <goals>
+                  <goal>format</goal>
+                </goals>
+                <configuration>
+                  <compilerCompliance>11</compilerCompliance>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
         </plugins>
       </build>
     </profile>
@@ -493,6 +525,37 @@
               </execution>
             </executions>
           </plugin>
+          <plugin>
+            <groupId>net.revelc.code</groupId>
+            <artifactId>impsort-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>sort-imports</id>
+                <goals>
+                  <goal>sort</goal>
+                </goals>
+                <configuration>
+                  <compliance>17</compliance>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>net.revelc.code.formatter</groupId>
+            <artifactId>formatter-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>format-sources</id>
+                <phase>process-sources</phase>
+                <goals>
+                  <goal>format</goal>
+                </goals>
+                <configuration>
+                  <compilerCompliance>17</compilerCompliance>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
         </plugins>
       </build>
     </profile>
@@ -519,6 +582,37 @@
                 </goals>
                 <configuration>
                   <release>21</release>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>net.revelc.code</groupId>
+            <artifactId>impsort-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>sort-imports</id>
+                <goals>
+                  <goal>sort</goal>
+                </goals>
+                <configuration>
+                  <compliance>21</compliance>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>net.revelc.code.formatter</groupId>
+            <artifactId>formatter-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>format-sources</id>
+                <phase>process-sources</phase>
+                <goals>
+                  <goal>format</goal>
+                </goals>
+                <configuration>
+                  <compilerCompliance>21</compilerCompliance>
                 </configuration>
               </execution>
             </executions>
@@ -637,6 +731,39 @@
               </archive>
             </configuration>
           </plugin>
+          <plugin>
+            <groupId>net.revelc.code</groupId>
+            <artifactId>impsort-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>sort-imports-java17</id>
+                <goals>
+                  <goal>sort</goal>
+                </goals>
+                <configuration>
+                  <sourceDirectory>${project.basedir}/src/main/java17</sourceDirectory>
+                  <compliance>17</compliance>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>net.revelc.code.formatter</groupId>
+            <artifactId>formatter-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>format-sources-java17</id>
+                <phase>process-sources</phase>
+                <goals>
+                  <goal>format</goal>
+                </goals>
+                <configuration>
+                  <sourceDirectory>${project.basedir}/src/main/java17</sourceDirectory>
+                  <compilerCompliance>17</compilerCompliance>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
         </plugins>
       </build>
     </profile>
@@ -751,6 +878,39 @@
                 </manifestEntries>
               </archive>
             </configuration>
+          </plugin>
+          <plugin>
+            <groupId>net.revelc.code</groupId>
+            <artifactId>impsort-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>sort-imports-java18</id>
+                <goals>
+                  <goal>sort</goal>
+                </goals>
+                <configuration>
+                  <sourceDirectory>${project.basedir}/src/main/java18</sourceDirectory>
+                  <compliance>18</compliance>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>net.revelc.code.formatter</groupId>
+            <artifactId>formatter-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>format-sources-java18</id>
+                <phase>process-sources</phase>
+                <goals>
+                  <goal>format</goal>
+                </goals>
+                <configuration>
+                  <sourceDirectory>${project.basedir}/src/main/java18</sourceDirectory>
+                  <compilerCompliance>18</compilerCompliance>
+                </configuration>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
@@ -868,6 +1028,39 @@
                 </manifestEntries>
               </archive>
             </configuration>
+          </plugin>
+          <plugin>
+            <groupId>net.revelc.code</groupId>
+            <artifactId>impsort-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>sort-imports-java19</id>
+                <goals>
+                  <goal>sort</goal>
+                </goals>
+                <configuration>
+                  <sourceDirectory>${project.basedir}/src/main/java19</sourceDirectory>
+                  <compliance>19</compliance>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>net.revelc.code.formatter</groupId>
+            <artifactId>formatter-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>format-sources-java19</id>
+                <phase>process-sources</phase>
+                <goals>
+                  <goal>format</goal>
+                </goals>
+                <configuration>
+                  <sourceDirectory>${project.basedir}/src/main/java19</sourceDirectory>
+                  <compilerCompliance>19</compilerCompliance>
+                </configuration>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
@@ -987,6 +1180,39 @@
                 </manifestEntries>
               </archive>
             </configuration>
+          </plugin>
+          <plugin>
+            <groupId>net.revelc.code</groupId>
+            <artifactId>impsort-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>sort-imports-java20</id>
+                <goals>
+                  <goal>sort</goal>
+                </goals>
+                <configuration>
+                  <sourceDirectory>${project.basedir}/src/main/java20</sourceDirectory>
+                  <compliance>20</compliance>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>net.revelc.code.formatter</groupId>
+            <artifactId>formatter-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>format-sources-java20</id>
+                <phase>process-sources</phase>
+                <goals>
+                  <goal>format</goal>
+                </goals>
+                <configuration>
+                  <sourceDirectory>${project.basedir}/src/main/java20</sourceDirectory>
+                  <compilerCompliance>20</compilerCompliance>
+                </configuration>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
@@ -1108,6 +1334,39 @@
                 </manifestEntries>
               </archive>
             </configuration>
+          </plugin>
+          <plugin>
+            <groupId>net.revelc.code</groupId>
+            <artifactId>impsort-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>sort-imports-java21</id>
+                <goals>
+                  <goal>sort</goal>
+                </goals>
+                <configuration>
+                  <sourceDirectory>${project.basedir}/src/main/java21</sourceDirectory>
+                  <compliance>21</compliance>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>net.revelc.code.formatter</groupId>
+            <artifactId>formatter-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>format-sources-java21</id>
+                <phase>process-sources</phase>
+                <goals>
+                  <goal>format</goal>
+                </goals>
+                <configuration>
+                  <sourceDirectory>${project.basedir}/src/main/java21</sourceDirectory>
+                  <compilerCompliance>21</compilerCompliance>
+                </configuration>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
