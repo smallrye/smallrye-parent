@@ -18,7 +18,7 @@ jobs:
     name: build
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         name: checkout
         with:
           path: smallrye-parent
@@ -37,7 +37,7 @@ jobs:
           cd smallrye-parent
           mvn -B -ntp formatter:validate install
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         name: checkout smallrye-config
         with:
           repository: smallrye/smallrye-config
@@ -50,7 +50,7 @@ jobs:
           git diff pom.xml
           mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}}
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         name: checkout smallrye-common
         with:
           repository: smallrye/smallrye-common
