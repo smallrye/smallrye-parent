@@ -63,7 +63,7 @@ jobs:
           git diff pom.xml
           mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}}
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         name: checkout jandex
         with:
           repository: smallrye/jandex
