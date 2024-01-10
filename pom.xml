@@ -34,7 +34,7 @@
     <version.source.plugin>3.3.0</version.source.plugin>
     <version.site.plugin>3.12.1</version.site.plugin>
     <version.surefire.plugin>3.2.5</version.surefire.plugin>
-    <version.surefire-report.plugin>3.2.3</version.surefire-report.plugin>
+    <version.surefire-report.plugin>3.2.5</version.surefire-report.plugin>
     <version.failsafe.plugin>3.2.3</version.failsafe.plugin>
     <version.smallrye.code.rules.plugin>2</version.smallrye.code.rules.plugin>
     <version.formatter.plugin>2.22.0</version.formatter.plugin>
