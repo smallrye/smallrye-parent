@@ -27,6 +27,7 @@ jobs:
           token: ${{secrets.RELEASE_TOKEN}}
 
       - uses: actions/setup-java@v4
+        distribution: temurin
         with:
           java-version: 11
 
