@@ -27,8 +27,8 @@ jobs:
           token: ${{secrets.RELEASE_TOKEN}}
 
       - uses: actions/setup-java@v4
-        distribution: temurin
         with:
+          distribution: temurin
           java-version: 11
 
       - name: maven release ${{steps.metadata.outputs.current-version}}
