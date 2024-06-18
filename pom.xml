@@ -20,6 +20,10 @@
   </modules>
 
   <properties>
+
+    <!-- Overall version for surefire/failsafe -->
+    <version.surefire>3.3.0</version.surefire>
+
     <!-- Plugin versions -->
     <version.clean.plugin>3.3.2</version.clean.plugin>
     <version.compiler.plugin>3.13.0</version.compiler.plugin>
@@ -33,9 +37,9 @@
     <version.deploy.plugin>3.1.2</version.deploy.plugin>
     <version.source.plugin>3.3.1</version.source.plugin>
     <version.site.plugin>3.12.1</version.site.plugin>
-    <version.surefire.plugin>3.2.5</version.surefire.plugin>
-    <version.surefire-report.plugin>3.2.5</version.surefire-report.plugin>
-    <version.failsafe.plugin>3.2.5</version.failsafe.plugin>
+    <version.surefire.plugin>${version.surefire}</version.surefire.plugin>
+    <version.surefire-report.plugin>${version.surefire}</version.surefire-report.plugin>
+    <version.failsafe.plugin>${version.surefire}</version.failsafe.plugin>
     <version.smallrye.code.rules.plugin>2</version.smallrye.code.rules.plugin>
     <version.formatter.plugin>2.22.0</version.formatter.plugin>
     <version.impsort.plugin>1.9.0</version.impsort.plugin>
