@@ -25,7 +25,7 @@
     <version.surefire>3.3.0</version.surefire>
 
     <!-- Plugin versions -->
-    <version.clean.plugin>3.3.2</version.clean.plugin>
+    <version.clean.plugin>3.4.0</version.clean.plugin>
     <version.compiler.plugin>3.13.0</version.compiler.plugin>
     <version.resources.plugin>3.3.1</version.resources.plugin>
     <version.gpg.plugin>3.2.4</version.gpg.plugin>
