@@ -171,3 +171,7 @@ They do not need to have any content (i.e. they can be zero-sized).
 |build-test-java21|Run tests for Java 21 when `java21.home` is set and JDK 22 or later is used.|<<mr-jar-testing>>
 |===
 
+[id='release-process']
+== Release Process
+
+The process to release smallye-parent is described in the https://github.com/smallrye/smallrye/wiki/Release-Process[Release Process wiki page].
