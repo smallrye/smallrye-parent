@@ -1,11 +1,13 @@
-name: Perform SmallRye Release Manually
-
+name: SmallRye Perform Release
+run-name: Perform ${{github.event.inputs.tag || github.ref_name}} Release
 on:
+  push:
+    tags:
+      - '*'
   workflow_dispatch:
     inputs:
-      version:
-        type: string
-        description: Tag version to perform release
+      tag:
+        description: 'Tag to release'
         required: true
 
 permissions:
@@ -23,4 +25,4 @@ jobs:
     uses: smallrye/.github/.github/workflows/perform-release.yml@main
     secrets: inherit
     with:
-      version: ${{ github.event.inputs.version }}
+      version: ${{github.event.inputs.tag || github.ref_name}}
