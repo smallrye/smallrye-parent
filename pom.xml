@@ -478,7 +478,7 @@
                 <id>default-testCompile</id>
                 <phase>test-compile</phase>
                 <goals>
-                  <goal>compile</goal>
+                  <goal>testCompile</goal>
                 </goals>
                 <configuration>
                   <release>11</release>
@@ -555,7 +555,7 @@
                 <id>default-testCompile</id>
                 <phase>test-compile</phase>
                 <goals>
-                  <goal>compile</goal>
+                  <goal>testCompile</goal>
                 </goals>
                 <configuration>
                   <release>17</release>
@@ -632,7 +632,7 @@
                 <id>default-testCompile</id>
                 <phase>test-compile</phase>
                 <goals>
-                  <goal>compile</goal>
+                  <goal>testCompile</goal>
                 </goals>
                 <configuration>
                   <release>21</release>
