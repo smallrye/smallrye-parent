@@ -26,7 +26,7 @@
 
     <!-- Plugin versions -->
     <version.clean.plugin>3.4.1</version.clean.plugin>
-    <version.compiler.plugin>3.13.0</version.compiler.plugin>
+    <version.compiler.plugin>3.14.0</version.compiler.plugin>
     <version.resources.plugin>3.3.1</version.resources.plugin>
     <version.gpg.plugin>3.2.7</version.gpg.plugin>
     <version.install.plugin>3.1.3</version.install.plugin>
