@@ -43,10 +43,8 @@ In order to do so, it is expected that the following system property or properti
 
 * `java11.home`: this property must be set to the location of a Java 11 JDK installation
 * `java17.home`: this property must be set to the location of a Java 17 JDK installation
-* `java18.home`: this property must be set to the location of a Java 18 JDK installation
-* `java19.home`: this property must be set to the location of a Java 19 JDK installation
-* `java20.home`: this property must be set to the location of a Java 20 JDK installation
 * `java21.home`: this property must be set to the location of a Java 21 JDK installation
+* `java25.home`: this property must be set to the location of a Java 21 JDK installation
 
 In order to simplify development, it is recommended to project maintainers to set these
 properties in your personal Maven `settings.xml` file.
@@ -82,7 +80,7 @@ Choose your base layer version.  This can be Java 11 or anything later.  Configu
 </plugin>
 ----
 
-If the `build-release-11`, `build-release-17`, or `build-release-21` file is present in the root of your project, then this step is automatically done for you, for the corresponding version. Only one such file should be present.
+If the `build-release-11`, `build-release-17`, `build-release-21`, or `build-release-25` file is present in the root of your project, then this step is automatically done for you, for the corresponding version. Only one such file should be present.
 
 [id='mr-jar-highest-layer']
 ==== Step 2: Highest layer version
@@ -163,12 +161,11 @@ They do not need to have any content (i.e. they can be zero-sized).
 |build-release-11|Use the `<release>` option to set Java 11 for the base layer.|<<mr-jar-base-layer>>
 |build-release-17|Use the `<release>` option to set Java 17 for the base layer.|<<mr-jar-base-layer>>
 |build-release-21|Use the `<release>` option to set Java 21 for the base layer.|<<mr-jar-base-layer>>
+|build-release-25|Use the `<release>` option to set Java 21 for the base layer.|<<mr-jar-base-layer>>
 |build-test-java11|Run tests for Java 11 when `java11.home` is set and JDK 17 or later is used.|<<mr-jar-testing>>
 |build-test-java17|Run tests for Java 17 when `java17.home` is set and JDK 18 or later is used.|<<mr-jar-testing>>
-|build-test-java18|Run tests for Java 18 when `java18.home` is set and JDK 19 or later is used.|<<mr-jar-testing>>
-|build-test-java19|Run tests for Java 19 when `java19.home` is set and JDK 20 or later is used.|<<mr-jar-testing>>
-|build-test-java20|Run tests for Java 20 when `java20.home` is set and JDK 21 or later is used.|<<mr-jar-testing>>
 |build-test-java21|Run tests for Java 21 when `java21.home` is set and JDK 22 or later is used.|<<mr-jar-testing>>
+|build-test-java25|Run tests for Java 25 when `java25.home` is set and JDK 26 or later is used.|<<mr-jar-testing>>
 |===
 
 [id='release-process']
