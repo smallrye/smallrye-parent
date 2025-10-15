@@ -90,3 +90,33 @@ jobs:
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
           mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
+
+      - uses: actions/checkout@v5
+        name: checkout smallrye-stork
+        with:
+          repository: smallrye/smallrye-stork
+          path: smallrye-stork
+
+      - name: test with smallrye-stork
+        run: |
+          cd smallrye-stork
+          # install the BOM first so update-parent does not fail
+          mvn -B -ntp install -pl bom -DskipTests
+          mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
+          git diff pom.xml
+          JAVA_HOME="${{env.JAVA_HOME_21_X64}}" mvn -B -ntp install
+
+      - uses: actions/checkout@v5
+        name: checkout smallrye-reactive-messaging
+        with:
+          repository: smallrye/smallrye-reactive-messaging
+          path: smallrye-reactive-messaging
+
+      - name: test with smallrye-reactive-messaging
+        run: |
+          cd smallrye-reactive-messaging
+          mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
+          git diff pom.xml
+          mvn -B -ntp install -DskipTests
+          # only test a subset because it takes a long time
+          mvn -B -ntp install -pl api,smallrye-reactive-messaging-jms,smallrye-reactive-messaging-amqp -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
