@@ -41,7 +41,6 @@ being compiled.
 Testing using `maven-surefire-plugin` is supported by running the project unit tests on every supported Java version.
 In order to do so, it is expected that the following system property or properties are set as needed:
 
-* `java11.home`: this property must be set to the location of a Java 11 JDK installation
 * `java17.home`: this property must be set to the location of a Java 17 JDK installation
 * `java21.home`: this property must be set to the location of a Java 21 JDK installation
 * `java25.home`: this property must be set to the location of a Java 21 JDK installation
@@ -62,7 +61,7 @@ To configure a multi-release JAR, you need the following pieces of information:
 [id='mr-jar-base-layer']
 ==== Step 1: Base layer version
 
-Choose your base layer version.  This can be Java 11 or anything later.  Configure the version by configuring the
+Choose your base layer version.  This can be Java 17 or anything later.  Configure the version by configuring the
 `release` property in the `default-compile` execution of `maven-compiler-plugin`:
 
 [source,xml]
@@ -73,14 +72,14 @@ Choose your base layer version.  This can be Java 11 or anything later.  Configu
     <execution>
       <id>default-compile</id>
       <configuration>
-        <release>11</release>
+        <release>17</release>
       </configuration>
     </execution>
   </executions>
 </plugin>
 ----
 
-If the `build-release-11`, `build-release-17`, `build-release-21`, or `build-release-25` file is present in the root of your project, then this step is automatically done for you, for the corresponding version. Only one such file should be present.
+If the `build-release-17`, `build-release-21`, or `build-release-25` file is present in the root of your project, then this step is automatically done for you, for the corresponding version. Only one such file should be present.
 
 [id='mr-jar-highest-layer']
 ==== Step 2: Highest layer version
@@ -119,7 +118,7 @@ In addition, providing additional public members in later versions is generally 
 Using this functionality with GitHub Actions is relatively simple.  It entails adding the additional JDK
 version(s) by way of a setup action, and then passing the location of each additional JDK to the build.
 
-As an example, for a project that is built on Java 17 but must also be tested against JDK 11 your `build.yml`
+As an example, for a project that is built on Java 25 but must also be tested against JDK 17 your `build.yml`
 might look something like this:
 
 [source,yaml]
@@ -138,16 +137,16 @@ jobs:
         with:
           distribution: temurin
           java-version: |
-            11
             17
+            25
 
       - name: Build
-        run: mvn -B verify --file pom.xml -Djava11.home=${{env.JAVA_HOME_11_X64}}
+        run: mvn -B verify --file pom.xml -Djava17.home=${{env.JAVA_HOME_17_X64}}
 ----
 
 See also link:https://github.com/actions/setup-java#readme[the README for `actions/setup-java`].
 
-Note that this configuration causes the default `JAVA_HOME` environment to be set to JDK 17.
+Note that this configuration causes the default `JAVA_HOME` environment to be set to JDK 25.
 
 [id='build-control-files']
 == Build control files reference
@@ -158,11 +157,9 @@ They do not need to have any content (i.e. they can be zero-sized).
 [cols="1m,2,1",options="header"]
 |===
 |File name|Purpose|Reference
-|build-release-11|Use the `<release>` option to set Java 11 for the base layer.|<<mr-jar-base-layer>>
 |build-release-17|Use the `<release>` option to set Java 17 for the base layer.|<<mr-jar-base-layer>>
 |build-release-21|Use the `<release>` option to set Java 21 for the base layer.|<<mr-jar-base-layer>>
 |build-release-25|Use the `<release>` option to set Java 21 for the base layer.|<<mr-jar-base-layer>>
-|build-test-java11|Run tests for Java 11 when `java11.home` is set and JDK 17 or later is used.|<<mr-jar-testing>>
 |build-test-java17|Run tests for Java 17 when `java17.home` is set and JDK 18 or later is used.|<<mr-jar-testing>>
 |build-test-java21|Run tests for Java 21 when `java21.home` is set and JDK 22 or later is used.|<<mr-jar-testing>>
 |build-test-java25|Run tests for Java 25 when `java25.home` is set and JDK 26 or later is used.|<<mr-jar-testing>>
