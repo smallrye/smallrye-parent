@@ -58,8 +58,9 @@
     <sonar.organization>smallrye</sonar.organization>
 
     <!-- maven-compiler-plugin -->
-    <maven.compiler.target>11</maven.compiler.target>
-    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.release>17</maven.compiler.release>
     <maven.compiler.testTarget>${maven.compiler.target}</maven.compiler.testTarget>
     <maven.compiler.testSource>${maven.compiler.source}</maven.compiler.testSource>
 
@@ -451,83 +452,6 @@
     <!-- MR JAR support starts here-->
 
     <profile>
-      <id>compile-java11-release-flag</id>
-      <activation>
-        <file>
-          <exists>${basedir}/build-release-11</exists>
-        </file>
-        <jdk>[11,)</jdk>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>default-compile</id>
-                <phase>compile</phase>
-                <goals>
-                  <goal>compile</goal>
-                </goals>
-                <configuration>
-                  <release>11</release>
-                </configuration>
-              </execution>
-              <execution>
-                <id>default-testCompile</id>
-                <phase>test-compile</phase>
-                <goals>
-                  <goal>testCompile</goal>
-                </goals>
-                <configuration>
-                  <release>11</release>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <groupId>net.revelc.code</groupId>
-            <artifactId>impsort-maven-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>sort-imports</id>
-                <goals>
-                  <goal>sort</goal>
-                </goals>
-                <configuration>
-                  <compliance>11</compliance>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <groupId>net.revelc.code.formatter</groupId>
-            <artifactId>formatter-maven-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>format-sources</id>
-                <phase>process-sources</phase>
-                <goals>
-                  <goal>format</goal>
-                </goals>
-                <configuration>
-                  <compilerCompliance>11</compilerCompliance>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <artifactId>maven-javadoc-plugin</artifactId>
-            <configuration>
-              <source>11</source>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
-    <profile>
       <id>compile-java17-release-flag</id>
       <activation>
         <file>
@@ -778,44 +702,6 @@
                 <id>default-test</id>
                 <configuration>
                   <classesDirectory>${project.build.outputDirectory}/META-INF/versions/17</classesDirectory>
-                  <additionalClasspathElements>
-                    <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
-                  </additionalClasspathElements>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
-    <!-- This profile is activated when Java 17 or later is used to test a project that supports Java 11-->
-    <profile>
-      <id>java11-test</id>
-      <activation>
-        <jdk>[17,)</jdk>
-        <property>
-          <name>java11.home</name>
-        </property>
-        <file>
-          <exists>${basedir}/build-test-java11</exists>
-        </file>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>java11-test</id>
-                <phase>test</phase>
-                <goals>
-                  <goal>test</goal>
-                </goals>
-                <configuration>
-                  <jvm>${java11.home}/bin/java</jvm>
-                  <classesDirectory>${project.build.outputDirectory}/META-INF/versions/11</classesDirectory>
                   <additionalClasspathElements>
                     <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
                   </additionalClasspathElements>

@@ -29,7 +29,6 @@ jobs:
           distribution: temurin
           architecture: x64
           java-version: |
-            11
             17
             21
             25
@@ -50,7 +49,7 @@ jobs:
           cd smallrye-config
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
-          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
+          mvn -B -ntp install -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
 
       - uses: actions/checkout@v5
         name: checkout smallrye-common
@@ -63,7 +62,7 @@ jobs:
           cd smallrye-common
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
-          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
+          mvn -B -ntp install -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
 
       - uses: actions/checkout@v5
         name: checkout jandex
@@ -76,7 +75,7 @@ jobs:
           cd jandex
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
-          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
+          mvn -B -ntp install -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
 
       - uses: actions/checkout@v5
         name: checkout smallrye-mutiny
@@ -89,7 +88,7 @@ jobs:
           cd smallrye-mutiny
           mvn -B -ntp versions:update-parent -DallowSnapshots=true -N
           git diff pom.xml
-          mvn -B -ntp install -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
+          mvn -B -ntp install -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
 
       - uses: actions/checkout@v5
         name: checkout smallrye-stork
@@ -119,4 +118,4 @@ jobs:
           git diff pom.xml
           mvn -B -ntp install -DskipTests
           # only test a subset because it takes a long time
-          mvn -B -ntp install -pl api,smallrye-reactive-messaging-jms,smallrye-reactive-messaging-amqp -Djava11.home=${{env.JAVA_HOME_11_X64}} -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
+          mvn -B -ntp install -pl api,smallrye-reactive-messaging-jms,smallrye-reactive-messaging-amqp -Djava17.home=${{env.JAVA_HOME_17_X64}} -Djava21.home=${{env.JAVA_HOME_21_X64}}
