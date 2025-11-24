@@ -46,7 +46,7 @@
     <version.impsort.plugin>1.9.0</version.impsort.plugin>
     <version.jacoco.plugin>0.8.14</version.jacoco.plugin>
     <version.buildnumber.plugin>3.2.1</version.buildnumber.plugin>
-    <version.versions.plugin>2.19.1</version.versions.plugin>
+    <version.versions.plugin>2.20.0</version.versions.plugin>
     <version.org.jboss.logging-processor>3.0.4.Final</version.org.jboss.logging-processor>
 
     <!-- Cross plugins settings -->
