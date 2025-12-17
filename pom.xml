@@ -150,6 +150,7 @@
           <artifactId>maven-jar-plugin</artifactId>
           <version>${version.jar.plugin}</version>
           <configuration>
+            <detectMultiReleaseJar>true</detectMultiReleaseJar>
             <archive>
               <index>true</index>
               <manifest>
@@ -745,16 +746,6 @@
             </executions>
           </plugin>
           <plugin>
-            <artifactId>maven-jar-plugin</artifactId>
-            <configuration>
-              <archive>
-                <manifestEntries>
-                  <Multi-Release>true</Multi-Release>
-                </manifestEntries>
-              </archive>
-            </configuration>
-          </plugin>
-          <plugin>
             <groupId>net.revelc.code</groupId>
             <artifactId>impsort-maven-plugin</artifactId>
             <executions>
@@ -891,16 +882,6 @@
                 </configuration>
               </execution>
             </executions>
-          </plugin>
-          <plugin>
-            <artifactId>maven-jar-plugin</artifactId>
-            <configuration>
-              <archive>
-                <manifestEntries>
-                  <Multi-Release>true</Multi-Release>
-                </manifestEntries>
-              </archive>
-            </configuration>
           </plugin>
           <plugin>
             <groupId>net.revelc.code</groupId>
@@ -1043,16 +1024,6 @@
             </executions>
           </plugin>
           <plugin>
-            <artifactId>maven-jar-plugin</artifactId>
-            <configuration>
-              <archive>
-                <manifestEntries>
-                  <Multi-Release>true</Multi-Release>
-                </manifestEntries>
-              </archive>
-            </configuration>
-          </plugin>
-          <plugin>
             <groupId>net.revelc.code</groupId>
             <artifactId>impsort-maven-plugin</artifactId>
             <executions>
@@ -1193,16 +1164,6 @@
                 </configuration>
               </execution>
             </executions>
-          </plugin>
-          <plugin>
-            <artifactId>maven-jar-plugin</artifactId>
-            <configuration>
-              <archive>
-                <manifestEntries>
-                  <Multi-Release>true</Multi-Release>
-                </manifestEntries>
-              </archive>
-            </configuration>
           </plugin>
           <plugin>
             <groupId>net.revelc.code</groupId>
@@ -1349,16 +1310,6 @@
             </executions>
           </plugin>
           <plugin>
-            <artifactId>maven-jar-plugin</artifactId>
-            <configuration>
-              <archive>
-                <manifestEntries>
-                  <Multi-Release>true</Multi-Release>
-                </manifestEntries>
-              </archive>
-            </configuration>
-          </plugin>
-          <plugin>
             <groupId>net.revelc.code</groupId>
             <artifactId>impsort-maven-plugin</artifactId>
             <executions>
@@ -1503,16 +1454,6 @@
                 </configuration>
               </execution>
             </executions>
-          </plugin>
-          <plugin>
-            <artifactId>maven-jar-plugin</artifactId>
-            <configuration>
-              <archive>
-                <manifestEntries>
-                  <Multi-Release>true</Multi-Release>
-                </manifestEntries>
-              </archive>
-            </configuration>
           </plugin>
           <plugin>
             <groupId>net.revelc.code</groupId>
@@ -1663,16 +1604,6 @@
             </executions>
           </plugin>
           <plugin>
-            <artifactId>maven-jar-plugin</artifactId>
-            <configuration>
-              <archive>
-                <manifestEntries>
-                  <Multi-Release>true</Multi-Release>
-                </manifestEntries>
-              </archive>
-            </configuration>
-          </plugin>
-          <plugin>
             <groupId>net.revelc.code</groupId>
             <artifactId>impsort-maven-plugin</artifactId>
             <executions>
@@ -1821,16 +1752,6 @@
                 </configuration>
               </execution>
             </executions>
-          </plugin>
-          <plugin>
-            <artifactId>maven-jar-plugin</artifactId>
-            <configuration>
-              <archive>
-                <manifestEntries>
-                  <Multi-Release>true</Multi-Release>
-                </manifestEntries>
-              </archive>
-            </configuration>
           </plugin>
           <plugin>
             <groupId>net.revelc.code</groupId>
