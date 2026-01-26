@@ -27,7 +27,7 @@
         <version.org.jboss.jandex>3.0.5</version.org.jboss.jandex>
 
         <!-- Testing versions -->
-        <version.assertj>3.27.6</version.assertj>
+        <version.assertj>3.27.7</version.assertj>
         <version.awaitility>4.3.0</version.awaitility>
         <version.junit>6.0.2</version.junit>
         <version.rest-assured>6.0.0</version.rest-assured>
