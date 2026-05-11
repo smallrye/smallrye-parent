@@ -23,8 +23,9 @@
         <version.jakarta.json-b.api>3.0.0</version.jakarta.json-b.api>
         <version.jakarta.ws.rs.api>3.1.0</version.jakarta.ws.rs.api>
 
+        <version.io.smallrye.jandex>3.5.3</version.io.smallrye.jandex>
         <version.org.jboss.logging>3.6.3.Final</version.org.jboss.logging>
-        <version.org.jboss.jandex>3.0.5</version.org.jboss.jandex>
+        <version.org.jboss.jandex>${version.io.smallrye.jandex}</version.org.jboss.jandex>
 
         <!-- Testing versions -->
         <version.assertj>3.27.7</version.assertj>
@@ -88,9 +89,9 @@
             </dependency>
 
             <dependency>
-                <groupId>org.jboss</groupId>
+                <groupId>io.smallrye</groupId>
                 <artifactId>jandex</artifactId>
-                <version>${version.org.jboss.jandex}</version>
+                <version>${version.io.smallrye.jandex}</version>
             </dependency>
 
             <!-- Testing -->
