@@ -36,7 +36,7 @@
     <version.release.plugin>3.3.1</version.release.plugin>
     <version.deploy.plugin>3.1.4</version.deploy.plugin>
     <version.source.plugin>3.4.0</version.source.plugin>
-    <version.site.plugin>3.21.0</version.site.plugin>
+    <version.site.plugin>3.22.0</version.site.plugin>
     <version.surefire.plugin>${version.surefire}</version.surefire.plugin>
     <version.surefire-report.plugin>${version.surefire}</version.surefire-report.plugin>
     <version.failsafe.plugin>${version.surefire}</version.failsafe.plugin>
