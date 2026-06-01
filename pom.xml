@@ -48,7 +48,7 @@
     <version.buildnumber.plugin>3.3.0</version.buildnumber.plugin>
     <version.versions.plugin>2.21.0</version.versions.plugin>
     <version.org.jboss.logging-processor>3.0.4.Final</version.org.jboss.logging-processor>
-    <version.javaparser>3.28.1</version.javaparser>
+    <version.javaparser>3.28.2</version.javaparser>
 
     <!-- Cross plugins settings -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
