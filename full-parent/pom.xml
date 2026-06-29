@@ -30,7 +30,7 @@
         <!-- Testing versions -->
         <version.assertj>3.27.7</version.assertj>
         <version.awaitility>4.3.0</version.awaitility>
-        <version.junit>6.1.0</version.junit>
+        <version.junit>6.1.1</version.junit>
         <version.rest-assured>6.0.0</version.rest-assured>
         <version.testcontainers>2.0.5</version.testcontainers>
     </properties>
