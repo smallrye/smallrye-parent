@@ -11,6 +11,11 @@ updates:
         - org.apache.maven.plugins:maven-surefire-plugin
         - org.apache.maven.plugins:maven-failsafe-plugin
         - org.apache.maven.plugins:maven-surefire-report-plugin
+  ignore:
+    - dependency-name: "jakarta.*:*"
+      update-types:
+        - "version-update:semver-major"
+        - "version-update:semver-minor"
 - package-ecosystem: "github-actions"
   directory: "/"
   schedule:
