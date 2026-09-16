@@ -49,6 +49,7 @@
     <version.versions.plugin>2.22.0</version.versions.plugin>
     <version.org.jboss.logging-processor>3.0.4.Final</version.org.jboss.logging-processor>
     <version.javaparser>3.28.2</version.javaparser>
+    <version.bom-builder>1.3.4</version.bom-builder>
 
     <!-- Cross plugins settings -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -301,6 +302,21 @@
               <version>${version.javaparser}</version>
             </dependency>
           </dependencies>
+        </plugin>
+        <plugin>
+          <groupId>eu.maveniverse.maven.plugins</groupId>
+          <artifactId>bom-builder3</artifactId>
+          <version>${version.bom-builder}</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>build-bom</goal>
+              </goals>
+              <configuration>
+                <attach>true</attach>
+              </configuration>
+            </execution>
+          </executions>
         </plugin>
       </plugins>
     </pluginManagement>
